@@ -1,3 +1,4 @@
+import { CiLink } from 'react-icons/ci';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const imageWithAlt = defineType({
@@ -90,6 +91,7 @@ export const seoType = defineType({
 export const socialLink = defineField({
   name: 'socialLink',
   type: 'object',
+  icon: CiLink,
   fields: [
     defineField({
       name: 'platform',
@@ -98,7 +100,7 @@ export const socialLink = defineField({
         list: [
           { title: 'GitHub', value: 'git-hub' },
           { title: 'LeetCode', value: 'leet-code' },
-          { title: 'LinkedIn', value: 'LinkedIn' },
+          { title: 'LinkedIn', value: 'linked-in' },
         ],
         layout: 'radio',
       },
@@ -109,4 +111,15 @@ export const socialLink = defineField({
       type: 'url',
     }),
   ],
+  preview: {
+    select: {
+      platform: 'platform',
+    },
+    prepare({ platform }) {
+      return {
+        title: platform,
+        media: CiLink,
+      };
+    },
+  },
 });
