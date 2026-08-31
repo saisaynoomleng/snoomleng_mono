@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# snoomleng — Personal Portfolio
 
-## Getting Started
+My personal developer portfolio and blog, built to showcase my projects, technical experience, and writing.
 
-First, run the development server:
+🌐 **Live:** [snoomleng.com](https://snoomleng.com)
+📝 **Blog:** [blog.snoomleng.com](https://blog.snoomleng.com)
+
+## Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- Tailwind CSS
+- shadCn/UI
+- TypeScript
+- zod
+- Storybook
+- React Hook Form
+- React Portable Text
+- Tanstack Query
+- GSAP
+
+### Backend
+
+- Node.js
+- Express
+- Sanity CMS
+- PostgreSQL
+- Neon
+- betterAuth
+- Drizzle ORM
+- React Email
+
+### Testing & Tooling
+
+- Vitest
+- Playwright
+- Turborepo
+- pnpm
+
+### DevOps
+
+- Docker
+- GitHub Actions
+- Nginx
+- Linux
+- Git/GitHub
+
+### Cloud & Infrastructure
+
+- CloudFront
+- CloudWatch
+- EC2
+- ECR
+- SQS
+- Lambda
+- SES
+- Security Groups
+- Secrets Manager
+- Certbot
+- Nginx
+
+## Features
+
+- Responsive portfolio
+- Project showcase
+- Technical blog
+- Sanity-powered content management
+- Contact form
+- Admin dashboard
+- REST API
+- PostgreSQL database
+- Asynchronous email processing with SQS + Lambda + SES
+- Dockerized services
+- CI/CD with GitHub Actions
+
+## Architecture
+
+The project is organized as a monorepo containing multiple applications and shared packages.
+
+The application is built as a collection of independent services rather than a single monolithic application. The portfolio and blog are separate Next.js applications, while an Express API handles backend operations and PostgreSQL stores structured application data.
+
+Content-heavy blog data is managed through Sanity, keeping editorial content separate from application data.
+
+The contact system uses asynchronous processing with Amazon SQS and Lambda. Contact requests are placed into a queue and processed independently, allowing the API to respond without waiting for email delivery through Amazon SES.
+
+The applications are containerized with Docker and deployed through a CI/CD pipeline using GitHub Actions and AWS infrastructure.
+
+## Development
+
+### Requirements
+
+- Node.js
+- pnpm
+- Docker
+
+### Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/saisaynoomleng/snoomleng.git
+cd snoomleng
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create the required `.env` files based on `.env.example`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Run
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## CI/CD
 
-## Deploy on Vercel
+GitHub Actions automatically runs checks such as linting, type checking, and builds before deploying changes to production.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### saisaynoomleng
+
+Developer focused on full-stack development, backend engineering, and cloud infrastructure.
+
+[Portfolio](https://snoomleng.com) · [Blog](https://blog.snoomleng.com)
