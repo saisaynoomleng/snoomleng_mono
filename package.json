@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:schema": "sanity schema extract --path=./src/sanity/schema.json",
+    "sanity:typegen": "sanity typegen generate",
+    "sanity:deploy": "sanity deploy",
+    "sanity:build": "sanity build"
   },
   "dependencies": {
     "@sanity/image-url": "^2.1.1",
@@ -16,6 +20,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "sanity": "^5.31.2",
+    "sanity-plugin-media": "^6.1.7",
     "styled-components": "^6.5.3"
   },
   "devDependencies": {
