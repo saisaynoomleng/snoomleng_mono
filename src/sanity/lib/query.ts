@@ -63,5 +63,15 @@ export const HOME_PAGE_QUERY = defineQuery(`{
     _id,
     icon,
     name
+  },
+  "employment": *[_type == 'employment'
+  && defined(slug.current)]
+  | order(startedAt desc){
+    _id,
+    name,
+    startedAt,
+    endedAt,
+    body,
+    companyName
   }
 }`);

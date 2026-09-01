@@ -6,3 +6,7 @@ export * from './Hero';
 export * from './SanityPortableText';
 export * from './AboutSection';
 export * from './TechSection';
+export * from './EmploymentSection';
+export * from './ContactForm';
+export * from './ContactSection';
+export * from './LoadingSpinner';

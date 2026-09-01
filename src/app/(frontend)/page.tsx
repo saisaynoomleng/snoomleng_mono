@@ -4,6 +4,8 @@ import {
   AboutSection,
   TechnologySection,
   TechnologyProps,
+  EmploymentSection,
+  ContactSection,
 } from '@/components/shared';
 import { sanityFetch } from '@/sanity/lib/live';
 import { HOME_PAGE_QUERY } from '@/sanity/lib/query';
@@ -14,7 +16,7 @@ export default async function Home() {
 
   if (!page) notFound();
 
-  const { hero, about, tech } = page;
+  const { hero, about, tech, employment } = page;
 
   return (
     <Bounded className="" spacing="lg">
@@ -23,6 +25,10 @@ export default async function Home() {
       <AboutSection about={about} />
 
       <TechnologySection techs={tech as TechnologyProps[]} />
+
+      <EmploymentSection employments={employment} />
+
+      <ContactSection />
     </Bounded>
   );
 }
