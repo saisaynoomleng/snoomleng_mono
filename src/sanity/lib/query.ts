@@ -31,7 +31,7 @@ export const FOOTER_QUERY = defineQuery(`*[_type == 'siteSetting'][0]{
 
 export const HOME_PAGE_QUERY = defineQuery(`{
   "hero": *[_type == 'hero'
-   && slug.current == "home-page"][0]{
+    && slug.current == "home-page"][0]{
       _id,
       title,
       body,
@@ -43,19 +43,25 @@ export const HOME_PAGE_QUERY = defineQuery(`{
       "imageUrl": mainImage.asset->url,
       "imageAlt": mainImage.alt,
       position[],
-   },
+    },
   "about": *[_type == 'about'
-    && defined(slug.current)][0]{
-      body,
-      "workflows": workFlow[]{
-        _key,
-        title,
-        body
-      },
-      mode[],
-      info{
-        city,
-        state
-      }
+  && defined(slug.current)][0]{
+    body,
+    "workflows": workFlow[]{
+      _key,
+      title,
+      body
+    },
+    mode[],
+    info{
+      city,
+      state
     }
+  },
+  "tech": *[_type == 'technology'
+  && defined(slug.current)]{
+    _id,
+    icon,
+    name
+  }
 }`);

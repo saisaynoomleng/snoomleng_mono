@@ -121,6 +121,17 @@ export type BlogFocus = {
   slug?: Slug;
 };
 
+export type CertificateBadge = {
+  _id: string;
+  _type: 'certificateBadge';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  mainImage?: ImageWithAlt;
+};
+
 export type Employment = {
   _id: string;
   _type: 'employment';
@@ -393,6 +404,7 @@ export type AllSanitySchemaTypes =
   | Slug
   | BlogCategory
   | BlogFocus
+  | CertificateBadge
   | Employment
   | Project
   | Technology
@@ -456,7 +468,7 @@ export type FOOTER_QUERY_RESULT = {
 
 // Source: src/sanity/lib/query.ts
 // Variable: HOME_PAGE_QUERY
-// Query: {  "hero": *[_type == 'hero'   && slug.current == "home-page"][0]{      _id,      title,      body,      actions[]{        _key,        label,        href      },      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt,      position[],   },  "about": *[_type == 'about'    && defined(slug.current)][0]{      body,      "workflows": workFlow[]{        _key,        title,        body      },      mode[],      info{        city,        state      }    }}
+// Query: {  "hero": *[_type == 'hero'    && slug.current == "home-page"][0]{      _id,      title,      body,      actions[]{        _key,        label,        href      },      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt,      position[],    },  "about": *[_type == 'about'  && defined(slug.current)][0]{    body,    "workflows": workFlow[]{      _key,      title,      body    },    mode[],    info{      city,      state    }  },  "tech": *[_type == 'technology'  && defined(slug.current)]{    _id,    icon,    name  }}
 export type HOME_PAGE_QUERY_RESULT = {
   hero: {
     _id: string;
@@ -484,6 +496,11 @@ export type HOME_PAGE_QUERY_RESULT = {
       state: string | null;
     } | null;
   } | null;
+  tech: Array<{
+    _id: string;
+    icon: string | null;
+    name: string | null;
+  }>;
 };
 
 // Query TypeMap
@@ -492,6 +509,6 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == \'siteSetting\'][0]{\n  "navigations": navigation[]{\n    _key,\n    label,\n    isButton,\n    href\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt\n }': MAIN_NAV_QUERY_RESULT;
     '*[_type == \'siteSetting\'][0]{\n  "footerColumns": columns[]{\n    _key,\n    columnTitle,\n    columnLinks[],\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt,\n  footerText,\n  socialLinks[]{\n    _key,\n    platform,\n    url,\n    icon\n  },\n  contactInfo\n }': FOOTER_QUERY_RESULT;
-    '{\n  "hero": *[_type == \'hero\'\n   && slug.current == "home-page"][0]{\n      _id,\n      title,\n      body,\n      actions[]{\n        _key,\n        label,\n        href\n      },\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt,\n      position[],\n   },\n  "about": *[_type == \'about\'\n    && defined(slug.current)][0]{\n      body,\n      "workflows": workFlow[]{\n        _key,\n        title,\n        body\n      },\n      mode[],\n      info{\n        city,\n        state\n      }\n    }\n}': HOME_PAGE_QUERY_RESULT;
+    '{\n  "hero": *[_type == \'hero\'\n    && slug.current == "home-page"][0]{\n      _id,\n      title,\n      body,\n      actions[]{\n        _key,\n        label,\n        href\n      },\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt,\n      position[],\n    },\n  "about": *[_type == \'about\'\n  && defined(slug.current)][0]{\n    body,\n    "workflows": workFlow[]{\n      _key,\n      title,\n      body\n    },\n    mode[],\n    info{\n      city,\n      state\n    }\n  },\n  "tech": *[_type == \'technology\'\n  && defined(slug.current)]{\n    _id,\n    icon,\n    name\n  }\n}': HOME_PAGE_QUERY_RESULT;
   }
 }
