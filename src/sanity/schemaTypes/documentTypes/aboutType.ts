@@ -25,6 +25,25 @@ export const aboutType = defineType({
       type: 'blockContent',
     }),
     defineField({
+      name: 'info',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'city',
+          type: 'string',
+        }),
+        defineField({
+          name: 'state',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'mode',
+      type: 'array',
+      of: [{ type: 'string' }],
+    }),
+    defineField({
       name: 'expertises',
       type: 'array',
       of: [
