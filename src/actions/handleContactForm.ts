@@ -1,8 +1,13 @@
 'use server';
 
+import ContactEmail from '@/components/email/ContactEmail/ContactEmail';
 import db, { ContactTable } from '@/db';
+import { env } from '@/lib/env/server';
 import { ActionResponse } from '@/lib/types';
 import { ContactFormInputSchema, ContactFormSchema } from '@/lib/validations';
+
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+import { render } from 'react-email';
 
 export const handleContactForm = async (
   data: ContactFormInputSchema,
@@ -21,12 +26,45 @@ export const handleContactForm = async (
 
     const { name, email, message, subject } = result.data;
 
-    await db.insert(ContactTable).values({
-      name,
-      email,
-      message,
-      subject,
-      status: 'new',
+    const html = await render(ContactEmail());
+
+    const emailClient = new SESClient({
+      region: env.AWS_REGION,
+      credentials: {
+        accessKeyId: env.AWS_ACCESS_KEY,
+        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+      },
+    });
+
+    await db.transaction(async (tx) => {
+      await tx.insert(ContactTable).values({
+        name,
+        email,
+        message,
+        subject,
+        status: 'new',
+      });
+
+      await emailClient.send(
+        new SendEmailCommand({
+          Source: 'noreply@snoomleng.com',
+
+          Destination: {
+            ToAddresses: [email],
+          },
+
+          Message: {
+            Subject: {
+              Data: 'Thank you for contacting me!',
+            },
+            Body: {
+              Html: {
+                Data: html,
+              },
+            },
+          },
+        }),
+      );
     });
 
     return {
