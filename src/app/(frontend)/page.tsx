@@ -1,3 +1,5 @@
+import { Bounded } from '@/components/shared';
+
 export default function Home() {
-  return <main className="">Hello next</main>;
+  return <Bounded className="">Hello next</Bounded>;
 }

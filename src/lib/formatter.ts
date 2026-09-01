@@ -1,5 +1,5 @@
 /**
- * Capitalize every word in a sentence
+ * Return a string with all first letter capitalized
  * @param title string
  * @returns string
  */
@@ -8,19 +8,101 @@ export const formatTitle = (title: string): string => {
     .trim()
     .replace(/\s+/g, ' ')
     .split(' ')
-    .map((w) => w.slice(0, 1).toUpperCase() + w.slice(1, 0).toLowerCase())
+    .map((w) => w.slice(0, 1).toUpperCase() + w.slice(1).toLowerCase())
     .join(' ');
 };
 
 /**
- * Return US Date format
- * @param date string | Date
+ * Return the Date in locale format
+ * @param date Date | string
  * @returns string
  */
-export const formatDate = (date: string | Date): string => {
-  return new Date(date).toLocaleDateString('en-US', {
+export const formatDate = (date: Date | string): string => {
+  return new Date(date).toLocaleDateString(undefined, {
     day: '2-digit',
     month: 'short',
     year: 'numeric',
   });
+};
+
+/**
+ * Slugify any string into sanity slug
+ * @param name string
+ * @returns string
+ */
+export const nameToSlug = (name: string): string => {
+  return name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 200);
+};
+
+/**
+ * Return year from a date
+ * @param date Date | string
+ * @returns number
+ */
+export const formatYear = (date: Date | string): number => {
+  return new Date(date).getFullYear();
+};
+
+/**
+ * Replace any dash(es) with a white space
+ * @param input string
+ * @returns string
+ */
+export const replaceDashWithSpace = (input: string): string => {
+  return input.replace(/-+/g, ' ');
+};
+
+/**
+ * Remove any dash(es) and join the string
+ * @param input string
+ * @returns string
+ */
+export const replaceDashWithNoSpace = (input: string): string => {
+  return input.replace(/-+/g, '');
+};
+
+/**
+ * Calculate the uploaded file size
+ * @param size number
+ * @param maxSize number
+ * @returns string | boolean
+ */
+export const exceedsImageSize = (size: number, maxSize: number): boolean =>
+  size > maxSize * 1024 * 1024;
+
+/**
+ * Return the image MIME type
+ * @param type string
+ * @returns string
+ */
+export const formatImageType = (type: string): string => {
+  const [, extension] = type.split('/');
+
+  return extension?.toUpperCase() ?? '';
+};
+
+/**
+ * Return the image file size in Unit String
+ * @param size number
+ * @returns string
+ */
+export const formatImageSize = (size: number): string => {
+  if (size >= 1024 * 1024 * 1024) {
+    return `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
+  }
+
+  if (size >= 1024 * 1024) {
+    return `${(size / (1024 * 1024)).toFixed(2)} MB`;
+  }
+
+  if (size >= 1024) {
+    return `${(size / 1024).toFixed(2)} KB`;
+  }
+
+  return `${size} bytes`;
 };
