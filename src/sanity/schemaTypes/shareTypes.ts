@@ -1,3 +1,4 @@
+import { formatTitle } from '@/lib/formatter';
 import { CiLink } from 'react-icons/ci';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
@@ -88,36 +89,39 @@ export const seoType = defineType({
   ],
 });
 
-export const socialLink = defineField({
+export const socialLink = defineType({
   name: 'socialLink',
   type: 'object',
-  icon: CiLink,
+  validation: (rule) => rule.required(),
   fields: [
     defineField({
       name: 'platform',
       type: 'string',
+      validation: (rule) => rule.required(),
       options: {
         list: [
+          { title: 'LinkedIn', value: 'linked-in' },
           { title: 'GitHub', value: 'git-hub' },
           { title: 'LeetCode', value: 'leet-code' },
-          { title: 'LinkedIn', value: 'linked-in' },
         ],
-        layout: 'radio',
       },
     }),
     defineField({
       name: 'url',
-      title: 'Link URL',
       type: 'url',
+    }),
+    defineField({
+      name: 'icon',
+      type: 'string',
     }),
   ],
   preview: {
     select: {
-      platform: 'platform',
+      name: 'platform',
     },
-    prepare({ platform }) {
+    prepare({ name }) {
       return {
-        title: platform,
+        title: name ? formatTitle(name) : 'Platform not provided',
         media: CiLink,
       };
     },

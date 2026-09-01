@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { josefin_slab, open_sans } from '@/lib/font';
 import clsx from 'clsx';
-import { MainNav } from '@/components/shared';
+import { SanityLive } from '@/sanity/lib/live';
 
 export const metadata: Metadata = {
   title: {
@@ -22,10 +22,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         josefin_slab.variable,
         open_sans.variable,
       )}
+      data-scroll-behavior="smooth"
     >
       <body className="min-h-full flex flex-col">
-        <MainNav />
-        <main>{children}</main>
+        {children}
+        <SanityLive />
       </body>
     </html>
   );

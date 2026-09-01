@@ -1467,6 +1467,13 @@
           }
         },
         "optional": true
+      },
+      "footerText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       }
     }
   },
@@ -1490,21 +1497,28 @@
             "of": [
               {
                 "type": "string",
+                "value": "linked-in"
+              },
+              {
+                "type": "string",
                 "value": "git-hub"
               },
               {
                 "type": "string",
                 "value": "leet-code"
-              },
-              {
-                "type": "string",
-                "value": "linked-in"
               }
             ]
           },
           "optional": true
         },
         "url": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "icon": {
           "type": "objectAttribute",
           "value": {
             "type": "string"

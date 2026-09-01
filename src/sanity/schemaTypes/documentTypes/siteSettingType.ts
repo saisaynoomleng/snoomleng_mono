@@ -133,5 +133,10 @@ export const siteSettingType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'footerText',
+      type: 'text',
+      validation: (rule) => rule.required(),
+    }),
   ],
 });
