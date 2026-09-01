@@ -51,7 +51,7 @@ export const AboutSpec = ({
   return (
     <Table
       className={twMerge(
-        clsx('brand-box-shadow border-2 max-w-[80%]', className),
+        clsx('brand-box-shadow border-2 max-w-[80%] mx-auto', className),
       )}
     >
       <TableHeader className="bg-primary font-semibold">
@@ -71,7 +71,7 @@ export const AboutSpec = ({
 
         <TableRow>
           <TableCell className="uppercase">Mode</TableCell>
-          <TableCell className="font-semibold">
+          <TableCell className="font-semibold flex flex-wrap gap-x-1">
             {mode.map((m, index) => {
               const dot =
                 index > 0 ? <span aria-hidden={true}> ● </span> : undefined;
