@@ -75,6 +75,7 @@ import { IoPencil } from 'react-icons/io5';
 import { GoPlus } from 'react-icons/go';
 import { Bounded } from '../shared/Bounded/Bounded';
 import { SectionTitle } from '../shared/SectionTitle/SectionTitle';
+import { GrCertificate } from 'react-icons/gr';
 
 const icons = [
   <MdHealthAndSafety />,
@@ -140,6 +141,7 @@ const icons = [
   <MdAddLink />,
   <MdOutlineImage />,
   <MdCode />,
+  <GrCertificate />,
 ];
 
 const fontSizes = {

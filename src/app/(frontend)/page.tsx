@@ -1,5 +1,10 @@
-import { Bounded, Hero } from '@/components/shared';
-import { AboutSection } from '@/components/shared/AboutSection/AboutSection';
+import {
+  Bounded,
+  Hero,
+  AboutSection,
+  TechnologySection,
+  TechnologyProps,
+} from '@/components/shared';
 import { sanityFetch } from '@/sanity/lib/live';
 import { HOME_PAGE_QUERY } from '@/sanity/lib/query';
 import { notFound } from 'next/navigation';
@@ -9,13 +14,15 @@ export default async function Home() {
 
   if (!page) notFound();
 
-  const { hero, about } = page;
+  const { hero, about, tech } = page;
 
   return (
-    <Bounded className="">
+    <Bounded className="" spacing="lg">
       <Hero hero={hero} />
 
       <AboutSection about={about} />
+
+      <TechnologySection techs={tech as TechnologyProps[]} />
     </Bounded>
   );
 }

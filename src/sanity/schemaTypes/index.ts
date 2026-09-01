@@ -9,6 +9,7 @@ import { projectType } from './documentTypes/projectType';
 import { blogFocusType } from './documentTypes/blogFocusType';
 import { blogCategoryType } from './documentTypes/blogCategoryType';
 import { blogType } from './documentTypes/blogType';
+import { certificateBadgeType } from './documentTypes/certificateBadgeType';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -23,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     technologyType,
     projectType,
     emplopymentType,
+    certificateBadgeType,
 
     blogFocusType,
     blogCategoryType,
