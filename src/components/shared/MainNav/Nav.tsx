@@ -34,7 +34,7 @@ export const DesktopNav = ({ className, menu }: NavProps) => {
       {menu.map((m) => (
         <React.Fragment key={m._key}>
           {m.isButton ? (
-            <Button type="button" asChild>
+            <Button type="button" asChild className="brand-box-shadow">
               <Link href={m.href as string} className="font-bold">
                 {m.label}
               </Link>
@@ -83,7 +83,7 @@ export const MobileNav = ({
     <>
       <Button
         variant="outline"
-        className="relative z-50 shadow-none! md:hidden"
+        className="relative z-50 md:hidden"
         onClick={() => setOpen((prevOpen) => !prevOpen)}
       >
         {open ? (
@@ -111,7 +111,7 @@ export const MobileNav = ({
         {menu.map((n) => (
           <React.Fragment key={n._key}>
             {n.isButton ? (
-              <Button type="button" asChild>
+              <Button type="button" asChild className="brand-box-shadow">
                 <Link
                   href={n.href as string}
                   className="font-bold!"
