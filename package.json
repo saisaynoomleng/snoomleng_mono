@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@sanity/client": "^8.4.0",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.2",
     "@shadcn/react": "^0.3.0",

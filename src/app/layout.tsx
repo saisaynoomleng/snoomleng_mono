@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { josefin_slab, open_sans } from '@/lib/font';
 import clsx from 'clsx';
+import { MainNav } from '@/components/shared';
 
 export const metadata: Metadata = {
   title: {
@@ -22,7 +23,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         open_sans.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <MainNav />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
