@@ -1,10 +1,33 @@
-import { drizzle } from 'drizzle-orm/neon-http';
-import { neon } from '@neondatabase/serverless';
+import 'dotenv/config';
+import { drizzle } from 'drizzle-orm/node-postgres';
 import { env } from '@/lib/env/server';
 import { relations } from 'drizzle-orm/_relations';
+import { Pool } from 'pg';
+import { remember } from '@epic-web/remember';
 
-const sql = neon(env.DATABASE_URL);
-const db = drizzle({ client: sql, logger: true });
+const createPool = () => {
+  const pool = new Pool({
+    connectionString: env.DATABASE_URL,
+    min: 2,
+    max: 20,
+  });
+
+  pool.on('error', (err) => {
+    console.error('PG Pool Error', err);
+  });
+
+  return pool;
+};
+
+let client: Pool;
+
+if (process.env.NODE_ENV === 'production') {
+  client = createPool();
+} else {
+  client = remember('DB Pool', () => createPool());
+}
+
+const db = drizzle({ client, logger: true });
 
 export default db;
 export * from './schema';
