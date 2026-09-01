@@ -10,9 +10,11 @@ export const env = createEnv({
     SANITY_WRITE_TOKEN: z
       .string()
       .min(1, 'Sanity Write Token must have at least 1 character'),
+    DATABASE_URL: z.string().startsWith('postgresql://'),
   },
   runtimeEnv: {
     SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
     SANITY_WRITE_TOKEN: process.env.SANITY_READ_TOKEN,
+    DATABASE_URL: process.env.DATABASE_URL,
   },
 });
