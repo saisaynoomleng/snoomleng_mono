@@ -254,12 +254,14 @@ export type SiteSetting = {
     _type: 'footerColumn';
     _key: string;
   }>;
+  footerText?: string;
 };
 
 export type SocialLink = {
   _type: 'socialLink';
-  platform?: 'git-hub' | 'leet-code' | 'linked-in';
+  platform?: 'linked-in' | 'git-hub' | 'leet-code';
   url?: string;
+  icon?: string;
 };
 
 export type SanityImageCrop = {
@@ -447,10 +449,40 @@ export type MAIN_NAV_QUERY_RESULT = {
   imageAlt: string | null;
 } | null;
 
+// Source: src/sanity/lib/query.ts
+// Variable: FOOTER_QUERY
+// Query: *[_type == 'siteSetting'][0]{  "footerColumns": columns[]{    _key,    columnTitle,    columnLinks[],  },  "imageUrl": primaryLogo.asset->url,  "imageAlt": primaryLogo.alt,  footerText,  socialLinks[]{    _key,    platform,    url,    icon  },  contactInfo }
+export type FOOTER_QUERY_RESULT = {
+  footerColumns: Array<{
+    _key: string;
+    columnTitle: string | null;
+    columnLinks: Array<{
+      label?: string;
+      href?: string;
+      _key: string;
+    }> | null;
+  }> | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  footerText: string | null;
+  socialLinks: Array<{
+    _key: string;
+    platform: 'git-hub' | 'leet-code' | 'linked-in' | null;
+    url: string | null;
+    icon: string | null;
+  }> | null;
+  contactInfo: {
+    email?: string;
+    city?: string;
+    state?: string;
+  } | null;
+} | null;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == \'siteSetting\'][0]{\n  "navigations": navigation[]{\n    _key,\n    label,\n    isButton,\n    href\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt\n }': MAIN_NAV_QUERY_RESULT;
+    '*[_type == \'siteSetting\'][0]{\n  "footerColumns": columns[]{\n    _key,\n    columnTitle,\n    columnLinks[],\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt,\n  footerText,\n  socialLinks[]{\n    _key,\n    platform,\n    url,\n    icon\n  },\n  contactInfo\n }': FOOTER_QUERY_RESULT;
   }
 }

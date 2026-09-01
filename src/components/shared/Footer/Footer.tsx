@@ -1,5 +1,134 @@
-import React from 'react';
+import { Separator } from '@/components/ui/separator';
+import { urlFor } from '@/sanity/lib/image';
+import { sanityFetch } from '@/sanity/lib/live';
+import { FOOTER_QUERY } from '@/sanity/lib/query';
+import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { FaLinkedin } from 'react-icons/fa';
+import { SiGithub, SiLeetcode } from 'react-icons/si';
+import { twMerge } from 'tailwind-merge';
 
-export const Footer = (): React.JSX.Element => {
-  return <footer></footer>;
+type FooterProps = {
+  className?: string;
+};
+
+const iconMap = {
+  gitHub: SiGithub,
+  leetcode: SiLeetcode,
+  linkedIn: FaLinkedin,
+} as const;
+
+export const Footer = async ({
+  className,
+}: FooterProps): Promise<React.JSX.Element> => {
+  const { data: footer } = await sanityFetch({ query: FOOTER_QUERY });
+
+  if (!footer) notFound();
+
+  const {
+    footerColumns,
+    footerText,
+    imageAlt,
+    imageUrl,
+    contactInfo,
+    socialLinks,
+  } = footer;
+
+  return (
+    <footer
+      className={twMerge(
+        clsx(
+          'px-4 md:px-6 lg:px-8 py-8 md:py-12 bg-foreground text-background/80 max-w-7xl mx-auto grid md:grid-cols-[2fr_1fr_1fr] gap-4 md:gap-6',
+          className,
+        ),
+      )}
+    >
+      <div className="flex flex-col gap-y-2">
+        <div className="overflow-hidden relative aspect-square w-20">
+          {imageUrl && (
+            <Image
+              src={urlFor(imageUrl).format('webp').url()}
+              alt={imageAlt || ''}
+              fill
+              sizes="(maxwidth: 100px) 100vw, 66vw"
+            />
+          )}
+        </div>
+        <p>{footerText}</p>
+      </div>
+
+      {footerColumns?.map((col) => (
+        <div key={col._key} className="flex flex-col gap-y-2">
+          <p className="font-bold text-muted-foreground uppercase">
+            {col.columnTitle}
+          </p>
+
+          <div className="flex flex-col gap-y-1">
+            {col.columnLinks?.map((link) => (
+              <Link
+                key={link._key}
+                href={link.href as string}
+                className="hover:underline underline-offset-4 decoration-wavy decoration-primary w-fit"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div className="flex flex-col gap-y-2">
+        <p className="font-bold text-muted-foreground uppercase">the desk</p>
+        {contactInfo && (
+          <address className="flex gap-y-1 flex-col">
+            <p className="flex gap-x-1 items-center">
+              <span>{contactInfo.city},</span>
+              <span>{contactInfo.state}</span>
+            </p>
+
+            <Link
+              href={`mailto:${contactInfo.email}`}
+              className="link-url inline-block w-fit"
+            >
+              {contactInfo.email}
+            </Link>
+          </address>
+        )}
+      </div>
+
+      <Separator className="col-span-full bg-background" />
+
+      <div className="col-span-full flex flex-col gap-y-2 md:justify-between md:flex-row md:items-center">
+        <p>
+          <span>&copy; {new Date().getFullYear()} Sai Say Noom Leng</span>
+          <span> ● </span>
+          <span>All rights reserved</span>
+        </p>
+
+        <div className="flex gap-x-2 items-center">
+          {socialLinks &&
+            socialLinks.map((link) => {
+              if (!link.platform || !link.url || !link.icon) return null;
+              const Icon =
+                iconMap[link.icon as unknown as keyof typeof iconMap];
+
+              return (
+                <Link
+                  key={link._key}
+                  href={link.url}
+                  rel="noreferrer noindex"
+                  target="_blank"
+                  className="text-fs-500 hover:text-primary"
+                >
+                  <span className="sr-only">{link.platform}</span>
+                  <Icon aria-hidden={true} />
+                </Link>
+              );
+            })}
+        </div>
+      </div>
+    </footer>
+  );
 };
