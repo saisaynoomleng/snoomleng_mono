@@ -36,6 +36,7 @@ import {
 } from 'react-icons/si';
 import { FaGolang, FaNode, FaStripe } from 'react-icons/fa6';
 import { FaAws } from 'react-icons/fa';
+import { AnimateSlideIn, AnimateSlideInStagger } from '@/components/animations';
 
 export type TechnologySectionProps = {
   className?: string;
@@ -90,15 +91,20 @@ export const TechnologySection = ({
       spacing="sm"
       className={twMerge(clsx('', className))}
     >
-      <SectionTitle label="Technologies" />
+      <AnimateSlideIn direction="top">
+        <SectionTitle label="Technologies" />
+      </AnimateSlideIn>
 
-      <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 place-items-center">
+      <AnimateSlideInStagger
+        direction="left"
+        className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 place-items-center"
+      >
         {techs.map((t) => {
           const Icon =
             TECH_STACK_ICON_MAP[t.icon as keyof typeof TECH_STACK_ICON_MAP];
 
           return (
-            <Tooltip key={t._id}>
+            <Tooltip key={t._id} data-animate-item>
               <TooltipTrigger className="w-fit" asChild>
                 {Icon && (
                   <Icon
@@ -112,7 +118,7 @@ export const TechnologySection = ({
             </Tooltip>
           );
         })}
-      </div>
+      </AnimateSlideInStagger>
     </Bounded>
   );
 };

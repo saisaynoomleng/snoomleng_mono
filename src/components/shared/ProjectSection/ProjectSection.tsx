@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/tooltip';
 import { SiGithub } from 'react-icons/si';
 import { CiLink } from 'react-icons/ci';
+import { AnimateSlideIn } from '@/components/animations';
 
 type ProjectSectionProps = {
   className?: string;
@@ -30,9 +31,11 @@ export const ProjectSection = ({
       size="full"
       className={twMerge(clsx('space-y-8', className))}
     >
-      <SectionTitle label="Things i shipped" />
+      <AnimateSlideIn direction="top">
+        <SectionTitle label="Things i shipped" />
+      </AnimateSlideIn>
 
-      <div>
+      <AnimateSlideIn direction="bottom">
         {projects.map((p, index) => {
           const number = `${index + 1}`.padStart(2, '0');
 
@@ -101,7 +104,7 @@ export const ProjectSection = ({
             </div>
           );
         })}
-      </div>
+      </AnimateSlideIn>
     </Bounded>
   );
 };

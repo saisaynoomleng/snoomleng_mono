@@ -9,6 +9,11 @@ import { SanityPortableText } from '../SanityPortableText';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
+import {
+  AnimateImageFillIn,
+  AnimateSlideIn,
+  AnimateSlideInStagger,
+} from '@/components/animations';
 
 type HeroProps = {
   className?: string;
@@ -32,7 +37,7 @@ export const Hero = async ({ className, hero }: HeroProps) => {
       )}
     >
       <div className="flex flex-col gap-y-6 md:gap-y-8 md:justify-center">
-        <div className="flex gap-x-2 items-baseline">
+        <AnimateSlideIn direction="top" className="flex gap-x-2 items-baseline">
           <span className="w-3 aspect-square bg-primary" />
           {position &&
             position.map((item, index) => (
@@ -48,22 +53,28 @@ export const Hero = async ({ className, hero }: HeroProps) => {
                 </p>
               </React.Fragment>
             ))}
-        </div>
+        </AnimateSlideIn>
 
-        <div>
+        <AnimateSlideIn direction="left">
           <h1 className="text-fs-600 md:text-fs-700 uppercase">{title}</h1>
-        </div>
+        </AnimateSlideIn>
 
-        <div className="prose-sm md:prose-lg w-full">
+        <AnimateSlideIn
+          direction="right"
+          className="prose-sm md:prose-lg w-full"
+        >
           {body && (
             <PortableText value={body} components={SanityPortableText} />
           )}
-        </div>
+        </AnimateSlideIn>
 
-        <div className="flex gap-x-4 items-center">
+        <AnimateSlideInStagger
+          direction="bottom"
+          className="flex gap-x-4 items-center"
+        >
           {actions &&
             actions.map((action, i) => (
-              <div key={action._key}>
+              <div key={action._key} data-animate-item>
                 <Button
                   asChild
                   variant={(i + 1) % 2 === 0 ? 'outline' : 'default'}
@@ -73,10 +84,10 @@ export const Hero = async ({ className, hero }: HeroProps) => {
                 </Button>
               </div>
             ))}
-        </div>
+        </AnimateSlideInStagger>
       </div>
 
-      <div className="w-full aspect-square relative">
+      <AnimateImageFillIn className="w-full aspect-square relative">
         {imageUrl && imageAlt && (
           <Image
             src={urlFor(imageUrl).width(800).height(800).format('webp').url()}
@@ -87,7 +98,7 @@ export const Hero = async ({ className, hero }: HeroProps) => {
             priority
           />
         )}
-      </div>
+      </AnimateImageFillIn>
     </Bounded>
   );
 };
