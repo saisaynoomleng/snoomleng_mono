@@ -141,3 +141,14 @@ export const CERTIFICATE_BADGE_QUERY =
   "imageUrl": mainImage.asset->url,
   "imageAlt": mainImage.alt
  }`);
+
+export const ALL_PROJECTS_QUERY = defineQuery(`*[_type == 'project'
+  && defined(slug.current)]
+  | order(createdAt desc){
+    _id,
+    name,
+    "slug": slug.current,
+    "imageUrl": mainImage.asset->url,
+    "imageAlt": mainImage.alt,
+    type
+}`);

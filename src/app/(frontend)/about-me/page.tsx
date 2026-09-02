@@ -9,6 +9,8 @@ import {
   CertificateBadge,
   SanityPortableText,
   SectionTitle,
+  TechnologyProps,
+  TechnologySection,
 } from '@/components/shared';
 import { Separator } from '@/components/ui/separator';
 import { sanityFetch } from '@/sanity/lib/live';
@@ -34,7 +36,7 @@ const AboutMePage = async (): Promise<React.JSX.Element> => {
 
   if (!page) notFound();
 
-  const { workflows, expertises, info, mode, intro, badges } = page;
+  const { workflows, expertises, info, mode, intro, badges, tech } = page;
 
   console.log(badges);
 
@@ -161,6 +163,8 @@ const AboutMePage = async (): Promise<React.JSX.Element> => {
           ))}
         </AnimateSlideInStagger>
       </div>
+      {/* tech */}
+      <TechnologySection techs={tech as TechnologyProps[]} />
 
       <div className="flex flex-col gap-y-4 md:gap-y-6">
         <AnimateSlideIn direction="top">

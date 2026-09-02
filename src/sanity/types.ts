@@ -577,6 +577,18 @@ export type CERTIFICATE_BADGE_QUERY_RESULT = Array<{
   imageAlt: string | null;
 }>;
 
+// Source: src/sanity/lib/query.ts
+// Variable: ALL_PROJECTS_QUERY
+// Query: *[_type == 'project'  && defined(slug.current)]  | order(createdAt desc){    _id,    name,    "slug": slug.current,    "imageUrl": mainImage.asset->url,    "imageAlt": mainImage.alt,    type}
+export type ALL_PROJECTS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: string | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  type: 'e-commerce' | 'health-care' | 'portfolio' | 'property' | null;
+}>;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -586,5 +598,6 @@ declare module '@sanity/client' {
     '{\n  "hero": *[_type == \'hero\'\n    && slug.current == "home-page"][0]{\n      _id,\n      title,\n      body,\n      actions[]{\n        _key,\n        label,\n        href\n      },\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt,\n      position[],\n    },\n  "about": *[_type == \'about\'\n  && defined(slug.current)][0]{\n    body,\n    "workflows": workFlow[]{\n      _key,\n      title,\n      body\n    },\n    mode[],\n    info{\n      city,\n      state\n    }\n  },\n  "tech": *[_type == \'technology\'\n  && defined(slug.current)]{\n    _id,\n    icon,\n    name\n  },\n  "employment": *[_type == \'employment\'\n  && defined(slug.current)]\n  | order(startedAt desc){\n    _id,\n    name,\n    startedAt,\n    endedAt,\n    body,\n    companyName\n  },\n  "projects": *[_type == \'project\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      startedAt,\n      endedAt,\n      type,\n      excerpt,\n      stacks[],\n      "slug": slug.current,\n      links[]{\n        _key,\n        label,\n        url\n      }\n    },\n    "badges": *[_type == \'certificateBadge\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt\n    },\n}': HOME_PAGE_QUERY_RESULT;
     '*[_type == \'about\'\n && slug.current == $slug][0]{\n  body,\n  expertises[]{\n    _key,\n    body,\n    title\n  },\n  info{\n    city,\n    state,\n  },\n  mode[],\n  "workflows": workFlow[]{\n    _key,\n    title,\n    body\n  },\n  intro,\n  "badges": *[_type == \'certificateBadge\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt\n    },\n  "tech": *[_type == \'technology\'\n    && defined(slug.current)]{\n      _id,\n      icon,\n      name\n    },\n }': ABOUT_PAGE_QUERY_RESULT;
     '*[_type == \'certificateBadge\'\n && defined(slug.current)]{\n  _id,\n  name,\n  "imageUrl": mainImage.asset->url,\n  "imageAlt": mainImage.alt\n }': CERTIFICATE_BADGE_QUERY_RESULT;
+    '*[_type == \'project\'\n  && defined(slug.current)]\n  | order(createdAt desc){\n    _id,\n    name,\n    "slug": slug.current,\n    "imageUrl": mainImage.asset->url,\n    "imageAlt": mainImage.alt,\n    type\n}': ALL_PROJECTS_QUERY_RESULT;
   }
 }
