@@ -5,6 +5,7 @@ import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
 import { notFound } from 'next/navigation';
 import { PortableText } from 'next-sanity';
 import { AboutSpec } from './AboutSpec';
+import { AnimateSlideIn } from '@/components/animations';
 
 type AboutSectionProps = {
   className?: string;
@@ -17,7 +18,7 @@ export const AboutSection = ({
 }: AboutSectionProps): React.JSX.Element => {
   if (!about) notFound();
 
-  const { mode, info, workflows, body } = about;
+  const { mode, info, body } = about;
 
   return (
     <Bounded
@@ -26,25 +27,25 @@ export const AboutSection = ({
       padding="none"
       spacing="md"
     >
-      <div>
+      <AnimateSlideIn direction="top">
         <SectionTitle label="About me" />
-      </div>
+      </AnimateSlideIn>
 
       <div className="grid gap-y-6 md:grid-cols-2 md:gap-x-6 md:justify-center md:items-center">
-        <div>
+        <AnimateSlideIn direction="left">
           <AboutSpec
             className="place-self-center"
             info={info ?? { city: '', state: '' }}
             mode={mode ?? []}
             status={true}
           />
-        </div>
+        </AnimateSlideIn>
 
-        <div className="prose prose-md w-full">
+        <AnimateSlideIn direction="right" className="prose prose-md w-full">
           {body && (
             <PortableText value={body} components={SanityPortableText} />
           )}
-        </div>
+        </AnimateSlideIn>
       </div>
     </Bounded>
   );

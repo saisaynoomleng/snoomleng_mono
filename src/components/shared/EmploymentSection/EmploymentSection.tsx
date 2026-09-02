@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
 import { formatYear } from '@/lib/formatter';
 import { PortableText } from 'next-sanity';
+import { AnimateSlideIn, AnimateSlideInStagger } from '@/components/animations';
 
 export type EmployementSectionProps = {
   className?: string;
@@ -22,9 +23,15 @@ export const EmploymentSection = ({
       padding="none"
       spacing="sm"
     >
-      <SectionTitle label="Employment Histories" />
+      <AnimateSlideIn direction="top">
+        <SectionTitle label="Employment Histories" />
+      </AnimateSlideIn>
 
-      <div className="flex flex-col gap-y-4">
+      <AnimateSlideInStagger
+        direction="top"
+        staggerForm="start"
+        className="flex flex-col gap-y-4"
+      >
         {employments.map((e) => (
           <div
             key={e._id}
@@ -54,7 +61,7 @@ export const EmploymentSection = ({
             )}
           </div>
         ))}
-      </div>
+      </AnimateSlideInStagger>
     </Bounded>
   );
 };

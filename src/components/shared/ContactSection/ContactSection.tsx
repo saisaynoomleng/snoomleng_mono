@@ -1,3 +1,4 @@
+import { AnimateSlideIn } from '@/components/animations';
 import { Bounded } from '../Bounded';
 import { ContactForm } from '../ContactForm';
 import { SectionTitle } from '../SectionTitle';
@@ -12,11 +13,17 @@ export const ContactSection = () => {
       className="grid md:grid-cols-2 gap-x-6 gap-y-4 justify-center"
       spacing="sm"
     >
-      <SectionTitle label={`Let's work together`} className="col-span-full" />
+      <AnimateSlideIn direction="top" className="col-span-full">
+        <SectionTitle label={`Let's work together`} />
+      </AnimateSlideIn>
 
-      <ContactForm />
+      <AnimateSlideIn direction="left">
+        <ContactForm />
+      </AnimateSlideIn>
 
-      <ContactDetail />
+      <AnimateSlideIn direction="right">
+        <ContactDetail />
+      </AnimateSlideIn>
     </Bounded>
   );
 };
