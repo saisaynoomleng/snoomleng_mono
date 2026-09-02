@@ -81,6 +81,10 @@ export const aboutType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'intro',
+      type: 'blockContent',
+    }),
   ],
   preview: {
     select: {

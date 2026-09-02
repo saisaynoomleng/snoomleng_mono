@@ -17,12 +17,12 @@ export const ContactSection = () => {
         <SectionTitle label={`Let's work together`} />
       </AnimateSlideIn>
 
-      <AnimateSlideIn direction="left">
-        <ContactForm />
+      <AnimateSlideIn direction="left" className="h-full">
+        <ContactForm className="h-full" />
       </AnimateSlideIn>
 
       <AnimateSlideIn direction="right">
-        <ContactDetail />
+        <ContactDetail className="h-full" />
       </AnimateSlideIn>
     </Bounded>
   );

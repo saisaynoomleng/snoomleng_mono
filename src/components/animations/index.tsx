@@ -3,10 +3,11 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 import React, { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
 type AnimateSlideInProps = {
   className?: string;
@@ -148,7 +149,95 @@ export const AnimateImageFillIn = ({
           duration: 1,
           scrollTrigger: {
             trigger: element,
-            start: 'top 90%%',
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        },
+      );
+    },
+    { scope: containerRef },
+  );
+
+  return (
+    <div ref={containerRef} className={twMerge(className)}>
+      {children}
+    </div>
+  );
+};
+
+export const AnimateTextLineFillIn = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const containerRef = useRef<HTMLParagraphElement>(null);
+
+  useGSAP(
+    () => {
+      const element = containerRef.current;
+
+      if (!element) return null;
+
+      const split = SplitText.create(element, { type: 'lines' });
+
+      gsap.fromTo(
+        split.lines,
+        { opacity: 0, yPercent: -100 },
+        {
+          opacity: 1,
+          yPercent: 0,
+          ease: 'power4.in',
+          stagger: { amount: 0.2 },
+          scrollTrigger: {
+            trigger: split.lines,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        },
+      );
+    },
+    { scope: containerRef },
+  );
+
+  return (
+    <p ref={containerRef} className={twMerge(className)}>
+      {children}
+    </p>
+  );
+};
+
+export const AnimateTypeWriter = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const element = containerRef.current;
+
+      if (!element) return;
+
+      const split = SplitText.create(element, { type: 'chars' });
+
+      gsap.fromTo(
+        split.chars,
+        { opacity: 0, yPercent: -100 },
+        {
+          opacity: 1,
+          yPercent: 0,
+          stagger: {
+            amount: 0.2,
+            from: 'random',
+          },
+          scrollTrigger: {
+            trigger: split.chars,
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
         },

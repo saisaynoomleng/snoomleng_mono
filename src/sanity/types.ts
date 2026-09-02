@@ -212,6 +212,7 @@ export type About = {
     body?: string;
     _key: string;
   }>;
+  intro?: BlockContent;
 };
 
 export type Hero = {
@@ -468,7 +469,7 @@ export type FOOTER_QUERY_RESULT = {
 
 // Source: src/sanity/lib/query.ts
 // Variable: HOME_PAGE_QUERY
-// Query: {  "hero": *[_type == 'hero'    && slug.current == "home-page"][0]{      _id,      title,      body,      actions[]{        _key,        label,        href      },      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt,      position[],    },  "about": *[_type == 'about'  && defined(slug.current)][0]{    body,    "workflows": workFlow[]{      _key,      title,      body    },    mode[],    info{      city,      state    }  },  "tech": *[_type == 'technology'  && defined(slug.current)]{    _id,    icon,    name  },  "employment": *[_type == 'employment'  && defined(slug.current)]  | order(startedAt desc){    _id,    name,    startedAt,    endedAt,    body,    companyName  },  "projects": *[_type == 'project'    && defined(slug.current)]{      _id,      name,      startedAt,      endedAt,      type,      excerpt,      stacks[],      "slug": slug.current,      links[]{        _key,        label,        url      }    }}
+// Query: {  "hero": *[_type == 'hero'    && slug.current == "home-page"][0]{      _id,      title,      body,      actions[]{        _key,        label,        href      },      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt,      position[],    },  "about": *[_type == 'about'  && defined(slug.current)][0]{    body,    "workflows": workFlow[]{      _key,      title,      body    },    mode[],    info{      city,      state    }  },  "tech": *[_type == 'technology'  && defined(slug.current)]{    _id,    icon,    name  },  "employment": *[_type == 'employment'  && defined(slug.current)]  | order(startedAt desc){    _id,    name,    startedAt,    endedAt,    body,    companyName  },  "projects": *[_type == 'project'    && defined(slug.current)]{      _id,      name,      startedAt,      endedAt,      type,      excerpt,      stacks[],      "slug": slug.current,      links[]{        _key,        label,        url      }    },    "badges": *[_type == 'certificateBadge'    && defined(slug.current)]{      _id,      name,      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt    },}
 export type HOME_PAGE_QUERY_RESULT = {
   hero: {
     _id: string;
@@ -524,7 +525,57 @@ export type HOME_PAGE_QUERY_RESULT = {
       url: string | null;
     }> | null;
   }>;
+  badges: Array<{
+    _id: string;
+    name: string | null;
+    imageUrl: string | null;
+    imageAlt: string | null;
+  }>;
 };
+
+// Source: src/sanity/lib/query.ts
+// Variable: ABOUT_PAGE_QUERY
+// Query: *[_type == 'about' && slug.current == $slug][0]{  body,  expertises[]{    _key,    body,    title  },  info{    city,    state,  },  mode[],  "workflows": workFlow[]{    _key,    title,    body  },  intro,  "badges": *[_type == 'certificateBadge'    && defined(slug.current)]{      _id,      name,      "imageUrl": mainImage.asset->url,      "imageAlt": mainImage.alt    },  "tech": *[_type == 'technology'    && defined(slug.current)]{      _id,      icon,      name    }, }
+export type ABOUT_PAGE_QUERY_RESULT = {
+  body: BlockContent | null;
+  expertises: Array<{
+    _key: string;
+    body: BlockContent | null;
+    title: string | null;
+  }> | null;
+  info: {
+    city: string | null;
+    state: string | null;
+  } | null;
+  mode: Array<string> | null;
+  workflows: Array<{
+    _key: string;
+    title: string | null;
+    body: string | null;
+  }> | null;
+  intro: BlockContent | null;
+  badges: Array<{
+    _id: string;
+    name: string | null;
+    imageUrl: string | null;
+    imageAlt: string | null;
+  }>;
+  tech: Array<{
+    _id: string;
+    icon: string | null;
+    name: string | null;
+  }>;
+} | null;
+
+// Source: src/sanity/lib/query.ts
+// Variable: CERTIFICATE_BADGE_QUERY
+// Query: *[_type == 'certificateBadge' && defined(slug.current)]{  _id,  name,  "imageUrl": mainImage.asset->url,  "imageAlt": mainImage.alt }
+export type CERTIFICATE_BADGE_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+}>;
 
 // Query TypeMap
 import '@sanity/client';
@@ -532,6 +583,8 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type == \'siteSetting\'][0]{\n  "navigations": navigation[]{\n    _key,\n    label,\n    isButton,\n    href\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt\n }': MAIN_NAV_QUERY_RESULT;
     '*[_type == \'siteSetting\'][0]{\n  "footerColumns": columns[]{\n    _key,\n    columnTitle,\n    columnLinks[],\n  },\n  "imageUrl": primaryLogo.asset->url,\n  "imageAlt": primaryLogo.alt,\n  footerText,\n  socialLinks[]{\n    _key,\n    platform,\n    url,\n    icon\n  },\n  contactInfo\n }': FOOTER_QUERY_RESULT;
-    '{\n  "hero": *[_type == \'hero\'\n    && slug.current == "home-page"][0]{\n      _id,\n      title,\n      body,\n      actions[]{\n        _key,\n        label,\n        href\n      },\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt,\n      position[],\n    },\n  "about": *[_type == \'about\'\n  && defined(slug.current)][0]{\n    body,\n    "workflows": workFlow[]{\n      _key,\n      title,\n      body\n    },\n    mode[],\n    info{\n      city,\n      state\n    }\n  },\n  "tech": *[_type == \'technology\'\n  && defined(slug.current)]{\n    _id,\n    icon,\n    name\n  },\n  "employment": *[_type == \'employment\'\n  && defined(slug.current)]\n  | order(startedAt desc){\n    _id,\n    name,\n    startedAt,\n    endedAt,\n    body,\n    companyName\n  },\n  "projects": *[_type == \'project\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      startedAt,\n      endedAt,\n      type,\n      excerpt,\n      stacks[],\n      "slug": slug.current,\n      links[]{\n        _key,\n        label,\n        url\n      }\n    }\n}': HOME_PAGE_QUERY_RESULT;
+    '{\n  "hero": *[_type == \'hero\'\n    && slug.current == "home-page"][0]{\n      _id,\n      title,\n      body,\n      actions[]{\n        _key,\n        label,\n        href\n      },\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt,\n      position[],\n    },\n  "about": *[_type == \'about\'\n  && defined(slug.current)][0]{\n    body,\n    "workflows": workFlow[]{\n      _key,\n      title,\n      body\n    },\n    mode[],\n    info{\n      city,\n      state\n    }\n  },\n  "tech": *[_type == \'technology\'\n  && defined(slug.current)]{\n    _id,\n    icon,\n    name\n  },\n  "employment": *[_type == \'employment\'\n  && defined(slug.current)]\n  | order(startedAt desc){\n    _id,\n    name,\n    startedAt,\n    endedAt,\n    body,\n    companyName\n  },\n  "projects": *[_type == \'project\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      startedAt,\n      endedAt,\n      type,\n      excerpt,\n      stacks[],\n      "slug": slug.current,\n      links[]{\n        _key,\n        label,\n        url\n      }\n    },\n    "badges": *[_type == \'certificateBadge\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt\n    },\n}': HOME_PAGE_QUERY_RESULT;
+    '*[_type == \'about\'\n && slug.current == $slug][0]{\n  body,\n  expertises[]{\n    _key,\n    body,\n    title\n  },\n  info{\n    city,\n    state,\n  },\n  mode[],\n  "workflows": workFlow[]{\n    _key,\n    title,\n    body\n  },\n  intro,\n  "badges": *[_type == \'certificateBadge\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt\n    },\n  "tech": *[_type == \'technology\'\n    && defined(slug.current)]{\n      _id,\n      icon,\n      name\n    },\n }': ABOUT_PAGE_QUERY_RESULT;
+    '*[_type == \'certificateBadge\'\n && defined(slug.current)]{\n  _id,\n  name,\n  "imageUrl": mainImage.asset->url,\n  "imageAlt": mainImage.alt\n }': CERTIFICATE_BADGE_QUERY_RESULT;
   }
 }
