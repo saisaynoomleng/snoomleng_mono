@@ -31,7 +31,7 @@ export const Hero = async ({ className, hero }: HeroProps) => {
       padding="none"
       className={twMerge(
         clsx(
-          'grid md:grid-cols-2 md:gap-x-6 md:justify-between md:items-center min-h-screen',
+          'grid md:grid-cols-2 md:gap-x-6 md:justify-between md:items-center',
           className,
         ),
       )}

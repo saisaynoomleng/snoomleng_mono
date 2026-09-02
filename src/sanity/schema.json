@@ -1194,6 +1194,14 @@
           }
         },
         "optional": true
+      },
+      "intro": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "blockContent"
+        },
+        "optional": true
       }
     }
   },

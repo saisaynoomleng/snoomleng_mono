@@ -89,5 +89,55 @@ export const HOME_PAGE_QUERY = defineQuery(`{
         label,
         url
       }
-    }
+    },
+    "badges": *[_type == 'certificateBadge'
+    && defined(slug.current)]{
+      _id,
+      name,
+      "imageUrl": mainImage.asset->url,
+      "imageAlt": mainImage.alt
+    },
 }`);
+
+export const ABOUT_PAGE_QUERY = defineQuery(`*[_type == 'about'
+ && slug.current == $slug][0]{
+  body,
+  expertises[]{
+    _key,
+    body,
+    title
+  },
+  info{
+    city,
+    state,
+  },
+  mode[],
+  "workflows": workFlow[]{
+    _key,
+    title,
+    body
+  },
+  intro,
+  "badges": *[_type == 'certificateBadge'
+    && defined(slug.current)]{
+      _id,
+      name,
+      "imageUrl": mainImage.asset->url,
+      "imageAlt": mainImage.alt
+    },
+  "tech": *[_type == 'technology'
+    && defined(slug.current)]{
+      _id,
+      icon,
+      name
+    },
+ }`);
+
+export const CERTIFICATE_BADGE_QUERY =
+  defineQuery(`*[_type == 'certificateBadge'
+ && defined(slug.current)]{
+  _id,
+  name,
+  "imageUrl": mainImage.asset->url,
+  "imageAlt": mainImage.alt
+ }`);

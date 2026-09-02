@@ -11,3 +11,4 @@ export * from './ContactForm';
 export * from './ContactSection';
 export * from './LoadingSpinner';
 export * from './ProjectSection';
+export * from './CertificateBadge';

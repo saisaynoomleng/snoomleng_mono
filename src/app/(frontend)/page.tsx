@@ -1,3 +1,4 @@
+import { AnimateSlideInStagger } from '@/components/animations';
 import {
   Bounded,
   Hero,
@@ -7,6 +8,7 @@ import {
   EmploymentSection,
   ContactSection,
   ProjectSection,
+  CertificateBadge,
 } from '@/components/shared';
 import { sanityFetch } from '@/sanity/lib/live';
 import { HOME_PAGE_QUERY } from '@/sanity/lib/query';
@@ -18,11 +20,23 @@ export default async function Home() {
 
   if (!page) notFound();
 
-  const { hero, about, tech, employment, projects } = page;
+  const { hero, about, tech, employment, projects, badges } = page;
 
   return (
     <Bounded className="" spacing="lg">
-      <Hero hero={hero} />
+      <div className="flex flex-col min-h-screen gap-y-4 md:gap-y-12">
+        <Hero hero={hero} />
+
+        <AnimateSlideInStagger
+          direction="left"
+          staggerForm="start"
+          className="flex justify-center items-center gap-x-3 col-span-full"
+        >
+          {badges?.map((b) => (
+            <CertificateBadge data-animate-item badge={b} key={b._id} />
+          ))}
+        </AnimateSlideInStagger>
+      </div>
 
       <AboutSection about={about} />
 
