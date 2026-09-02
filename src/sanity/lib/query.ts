@@ -152,3 +152,41 @@ export const ALL_PROJECTS_QUERY = defineQuery(`*[_type == 'project'
     "imageAlt": mainImage.alt,
     type
 }`);
+
+export const PROJECT_QUERY = defineQuery(`*[_type == 'project'
+  && slug.current == $slug][0]{
+    body,
+    startedAt,
+    endedAt,
+    links[]{
+      _key,
+      label,
+      url
+    },
+    name,
+    seo{
+      metaTitle,
+      metaDescription,
+      "imageUrl": ogImage.asset->url,
+      "imageAlt": ogImage.alt
+    },
+    stacks[],
+    type,
+    "slug": slug.current,
+    "imageUrl": mainImage.asset->url,
+    "imageAlt": mainImage.alt
+    }
+`);
+
+export const ALL_BLOGS_QUERY = defineQuery(`*[_type == 'blog'
+ && defined(slug.current)]{
+    _id,
+    name,
+    "slug": slug.current,
+    publishedAt,
+    "imageUrl": mainImage.asset->url,
+    'imageAlt': mainImage.alt,
+    excerpt,
+    "focus": focus->name,
+    "category": category->name
+  }`);

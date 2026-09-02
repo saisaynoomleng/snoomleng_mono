@@ -16,6 +16,7 @@ const ProjectsPage = async (): Promise<React.JSX.Element> => {
   const { data: projects } = await sanityFetch({
     query: ALL_PROJECTS_QUERY,
     stega: false,
+    perspective: 'published',
   });
 
   if (!projects) return notFound();
