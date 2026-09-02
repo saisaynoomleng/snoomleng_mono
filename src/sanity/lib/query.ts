@@ -73,5 +73,21 @@ export const HOME_PAGE_QUERY = defineQuery(`{
     endedAt,
     body,
     companyName
-  }
+  },
+  "projects": *[_type == 'project'
+    && defined(slug.current)]{
+      _id,
+      name,
+      startedAt,
+      endedAt,
+      type,
+      excerpt,
+      stacks[],
+      "slug": slug.current,
+      links[]{
+        _key,
+        label,
+        url
+      }
+    }
 }`);
