@@ -29,4 +29,5 @@ export const env = createEnv({
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_REGION: process.env.AWS_REGION,
   },
+  skipValidation: !!process.env.SKIP_VALIDATION,
 });
