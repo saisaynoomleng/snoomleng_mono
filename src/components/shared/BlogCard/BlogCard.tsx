@@ -32,7 +32,7 @@ export const BlogCard = ({
 
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/blogs/${slug}`}
       className={twMerge(
         clsx(
           'flex flex-col gap-y-1 border-2 w-75 p-2 md:p-3 border-border brand-box-shadow hover:scale-[1.01] duration-200 transition-transform',

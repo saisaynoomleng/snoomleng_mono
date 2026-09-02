@@ -28,6 +28,9 @@ export const SanityPortableText: PortableTextComponents = {
     bullet: ({ children }) => (
       <li className="marker:text-primary">{children}</li>
     ),
+    number: ({ children }) => (
+      <li className="marker:text-primary">{children}</li>
+    ),
   },
   block: {
     normal: ({ children }) => <p>{children}</p>,
