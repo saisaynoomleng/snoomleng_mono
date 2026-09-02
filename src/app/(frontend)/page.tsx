@@ -6,9 +6,11 @@ import {
   TechnologyProps,
   EmploymentSection,
   ContactSection,
+  ProjectSection,
 } from '@/components/shared';
 import { sanityFetch } from '@/sanity/lib/live';
 import { HOME_PAGE_QUERY } from '@/sanity/lib/query';
+import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
 import { notFound } from 'next/navigation';
 
 export default async function Home() {
@@ -16,7 +18,7 @@ export default async function Home() {
 
   if (!page) notFound();
 
-  const { hero, about, tech, employment } = page;
+  const { hero, about, tech, employment, projects } = page;
 
   return (
     <Bounded className="" spacing="lg">
@@ -25,6 +27,10 @@ export default async function Home() {
       <AboutSection about={about} />
 
       <TechnologySection techs={tech as TechnologyProps[]} />
+
+      <ProjectSection
+        projects={projects as NonNullable<HOME_PAGE_QUERY_RESULT>['projects']}
+      />
 
       <EmploymentSection employments={employment} />
 
