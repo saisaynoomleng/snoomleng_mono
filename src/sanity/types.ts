@@ -589,6 +589,47 @@ export type ALL_PROJECTS_QUERY_RESULT = Array<{
   type: 'e-commerce' | 'health-care' | 'portfolio' | 'property' | null;
 }>;
 
+// Source: src/sanity/lib/query.ts
+// Variable: PROJECT_QUERY
+// Query: *[_type == 'project'  && slug.current == $slug][0]{    body,    startedAt,    endedAt,    links[]{      _key,      label,      url    },    name,    seo{      metaTitle,      metaDescription,      "imageUrl": ogImage.asset->url,      "imageAlt": ogImage.alt    },    stacks[],    type,    "slug": slug.current,    "imageUrl": mainImage.asset->url,    "imageAlt": mainImage.alt    }
+export type PROJECT_QUERY_RESULT = {
+  body: BlockContent | null;
+  startedAt: string | null;
+  endedAt: string | null;
+  links: Array<{
+    _key: string;
+    label: string | null;
+    url: string | null;
+  }> | null;
+  name: string | null;
+  seo: {
+    metaTitle: string | null;
+    metaDescription: string | null;
+    imageUrl: string | null;
+    imageAlt: string | null;
+  } | null;
+  stacks: Array<string> | null;
+  type: 'e-commerce' | 'health-care' | 'portfolio' | 'property' | null;
+  slug: string | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+} | null;
+
+// Source: src/sanity/lib/query.ts
+// Variable: ALL_BLOGS_QUERY
+// Query: *[_type == 'blog' && defined(slug.current)]{    _id,    name,    "slug": slug.current,    publishedAt,    "imageUrl": mainImage.asset->url,    'imageAlt': mainImage.alt,    excerpt,    "focus": focus->name,    "category": category->name  }
+export type ALL_BLOGS_QUERY_RESULT = Array<{
+  _id: string;
+  name: string | null;
+  slug: string | null;
+  publishedAt: string | null;
+  imageUrl: string | null;
+  imageAlt: string | null;
+  excerpt: string | null;
+  focus: string | null;
+  category: string | null;
+}>;
+
 // Query TypeMap
 import '@sanity/client';
 declare module '@sanity/client' {
@@ -599,5 +640,7 @@ declare module '@sanity/client' {
     '*[_type == \'about\'\n && slug.current == $slug][0]{\n  body,\n  expertises[]{\n    _key,\n    body,\n    title\n  },\n  info{\n    city,\n    state,\n  },\n  mode[],\n  "workflows": workFlow[]{\n    _key,\n    title,\n    body\n  },\n  intro,\n  "badges": *[_type == \'certificateBadge\'\n    && defined(slug.current)]{\n      _id,\n      name,\n      "imageUrl": mainImage.asset->url,\n      "imageAlt": mainImage.alt\n    },\n  "tech": *[_type == \'technology\'\n    && defined(slug.current)]{\n      _id,\n      icon,\n      name\n    },\n }': ABOUT_PAGE_QUERY_RESULT;
     '*[_type == \'certificateBadge\'\n && defined(slug.current)]{\n  _id,\n  name,\n  "imageUrl": mainImage.asset->url,\n  "imageAlt": mainImage.alt\n }': CERTIFICATE_BADGE_QUERY_RESULT;
     '*[_type == \'project\'\n  && defined(slug.current)]\n  | order(createdAt desc){\n    _id,\n    name,\n    "slug": slug.current,\n    "imageUrl": mainImage.asset->url,\n    "imageAlt": mainImage.alt,\n    type\n}': ALL_PROJECTS_QUERY_RESULT;
+    '*[_type == \'project\'\n  && slug.current == $slug][0]{\n    body,\n    startedAt,\n    endedAt,\n    links[]{\n      _key,\n      label,\n      url\n    },\n    name,\n    seo{\n      metaTitle,\n      metaDescription,\n      "imageUrl": ogImage.asset->url,\n      "imageAlt": ogImage.alt\n    },\n    stacks[],\n    type,\n    "slug": slug.current,\n    "imageUrl": mainImage.asset->url,\n    "imageAlt": mainImage.alt\n    }\n': PROJECT_QUERY_RESULT;
+    '*[_type == \'blog\'\n && defined(slug.current)]{\n    _id,\n    name,\n    "slug": slug.current,\n    publishedAt,\n    "imageUrl": mainImage.asset->url,\n    \'imageAlt\': mainImage.alt,\n    excerpt,\n    "focus": focus->name,\n    "category": category->name\n  }': ALL_BLOGS_QUERY_RESULT;
   }
 }

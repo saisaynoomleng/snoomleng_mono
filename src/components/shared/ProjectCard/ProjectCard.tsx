@@ -44,7 +44,7 @@ export const ProjectCard = ({
       )}
     >
       {imageAlt && imageUrl && (
-        <div className="relative w-full aspect-square overflow-hidden">
+        <div className="relative w-full aspect-square overflow-hidden mx-auto">
           <Image
             src={urlFor(imageUrl).width(300).height(300).format('webp').url()}
             alt={imageAlt}
