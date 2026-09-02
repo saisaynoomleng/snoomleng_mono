@@ -190,3 +190,35 @@ export const ALL_BLOGS_QUERY = defineQuery(`*[_type == 'blog'
     "focus": focus->name,
     "category": category->name
   }`);
+
+export const BLOG_QUERY =
+  defineQuery(`*[_type == 'blog' && slug.current == $slug][0]{
+  name,
+  publishedAt,
+  body,
+  "imageUrl": mainImage.asset->url,
+  "imageAlt": mainImage.alt,
+  "category": category->name,
+  "categorySlug": category->slug.current,
+  "focus": focus->name,
+  "seo": seo{
+    metaTitle,
+    metaDescription,
+    "ogImage": ogImage.asset->url
+  },
+  "relatedBlogs": *[_type == 'blog'
+    && defined(slug.current)
+    && category._ref == ^.category._ref
+    && slug.current != $slug
+  ]{
+   _id,
+    name,
+    "slug": slug.current,
+    publishedAt,
+    "imageUrl": mainImage.asset->url,
+    'imageAlt': mainImage.alt,
+    excerpt,
+    "focus": focus->name,
+    "category": category->name
+  }
+}`);

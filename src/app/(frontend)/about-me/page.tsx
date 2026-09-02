@@ -42,7 +42,7 @@ const AboutMePage = async (): Promise<React.JSX.Element> => {
 
   return (
     <Bounded padding="sm" spacing="lg">
-      <div className="grid md:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-12 md:justify-between min-h-screen">
+      <div className="grid md:grid-cols-2 gap-y-4 gap-x-6 md:gap-x-12 md:justify-between min-h-dvh">
         <div className="flex flex-col gap-y-3 justify-center items-start gap-x-2">
           <AnimateSlideInStagger
             direction="left"
@@ -171,11 +171,13 @@ const AboutMePage = async (): Promise<React.JSX.Element> => {
           <SectionTitle label="how you can hire me" />
         </AnimateSlideIn>
 
-        <p className="font-semibold text-muted-foreground">
-          I help teams transform ideas into reliable, scalable, and
-          user-friendly digital products through thoughtful engineering and
-          modern web technologies.
-        </p>
+        <AnimateSlideIn direction="left">
+          <p className="font-semibold text-muted-foreground">
+            I help teams transform ideas into reliable, scalable, and
+            user-friendly digital products through thoughtful engineering and
+            modern web technologies.
+          </p>
+        </AnimateSlideIn>
 
         <AnimateSlideInStagger
           direction="top"
@@ -189,14 +191,14 @@ const AboutMePage = async (): Promise<React.JSX.Element> => {
             >
               <p className="font-semibold">{e.title}</p>
 
-              {e.body && (
-                <div className="prose-sm w-full">
+              <div className="prose prose-sm w-full">
+                {e.body && (
                   <PortableText
                     value={e.body}
                     components={SanityPortableText}
                   />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           ))}
         </AnimateSlideInStagger>

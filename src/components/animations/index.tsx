@@ -89,6 +89,8 @@ export const AnimateSlideInStagger = ({
 
       const items = element.querySelectorAll('[data-animate-item]');
 
+      if (!items.length) return;
+
       const vars: gsap.TweenVars = {
         opacity,
         delay,
