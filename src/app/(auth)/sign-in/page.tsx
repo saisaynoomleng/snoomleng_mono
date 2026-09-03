@@ -18,9 +18,11 @@ import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
-import { env } from '@/lib/env/client';
+import { useRouter } from 'next/navigation';
 
 const SignInPage = () => {
+  const router = useRouter();
+
   const form = useForm<SignInFormInputSchema>({
     resolver: zodResolver(SignInFormSchema),
     defaultValues: {
@@ -36,10 +38,11 @@ const SignInPage = () => {
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
-        callbackURL: `${env.NEXT_PUBLIC_APP_URL}/admin`,
       },
       {
-        onSuccess: () => {},
+        onSuccess: () => {
+          router.push('/admin');
+        },
         onError: (ctx) => {
           toast.error(ctx.error.message);
         },

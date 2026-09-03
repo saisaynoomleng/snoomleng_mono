@@ -1,7 +1,17 @@
-import React from 'react';
+import { AdminSidebar } from '@/components/admin/Sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
-export const AdminLayout = ({
-  children,
-}: Readonly<{ children: React.ReactNode }>) => {
-  return <main>{children}</main>;
-};
+export default function AdminLayout({ children }: LayoutProps<'/admin'>) {
+  return (
+    <>
+      <SidebarProvider>
+        <AdminSidebar />
+        <main>
+          <SidebarTrigger className="border-0" />
+          {children}
+        </main>
+      </SidebarProvider>
+      ;
+    </>
+  );
+}
