@@ -14,6 +14,7 @@ export const handleContactForm = async (
 ): Promise<ActionResponse<ContactFormInputSchema>> => {
   try {
     const result = ContactFormSchema.safeParse(data);
+    const isProd = process.env.NODE_ENV === 'production';
 
     if (!result.success) {
       const e = result.error.issues[0];
@@ -28,13 +29,17 @@ export const handleContactForm = async (
 
     const html = await render(ContactEmail());
 
-    const emailClient = new SESClient({
-      region: env.AWS_REGION,
-      credentials: {
-        accessKeyId: env.AWS_ACCESS_KEY,
-        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
-      },
-    });
+    const emailClient = isProd
+      ? new SESClient({
+          region: env.AWS_REGION,
+        })
+      : new SESClient({
+          region: env.AWS_REGION,
+          credentials: {
+            accessKeyId: env.AWS_ACCESS_KEY,
+            secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+          },
+        });
 
     await db.transaction(async (tx) => {
       await tx.insert(ContactTable).values({
@@ -72,6 +77,7 @@ export const handleContactForm = async (
       message: 'Thank you for contacting me!',
     };
   } catch (error) {
+    console.error('Contact Form Error', error);
     return {
       success: false,
       message: 'Something went wrong!',

@@ -27,7 +27,7 @@ export const AnimateSlideIn = ({
   className,
   direction,
   delay = 0,
-  duration = 1,
+  duration = 0.5,
   offset = 100,
   children,
   opacity = 0,
@@ -76,7 +76,7 @@ export const AnimateSlideInStagger = ({
   opacity = 0,
   children,
   offset = 100,
-  duration = 1,
+  duration = 0.5,
   staggerForm = 'random',
 }: AnimateSlideInGroupProps): React.JSX.Element => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -148,7 +148,7 @@ export const AnimateImageFillIn = ({
         {
           opacity: 1,
           clipPath: 'inset(0% 0% 0% 0%)',
-          duration: 1,
+          duration: 0.5,
           scrollTrigger: {
             trigger: element,
             start: 'top 90%',
@@ -189,6 +189,7 @@ export const AnimateTextLineFillIn = ({
         { opacity: 0, yPercent: -100 },
         {
           opacity: 1,
+          duration: 0.5,
           yPercent: 0,
           ease: 'power4.in',
           stagger: { amount: 0.2 },
@@ -237,6 +238,7 @@ export const AnimateTypeWriter = ({
             amount: 0.2,
             from: 'random',
           },
+          duration: 0.5,
           scrollTrigger: {
             trigger: split.chars,
             start: 'top 90%',
