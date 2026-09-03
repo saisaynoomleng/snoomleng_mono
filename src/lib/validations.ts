@@ -40,3 +40,27 @@ export type SignInFormInputSchema = z.input<typeof SignInFormSchema>;
  * Validate Sign In Form Output Schema
  */
 export type SignInFormOutputSchema = z.output<typeof SignInFormSchema>;
+
+/**
+ * Validate Sign Up Form Schema
+ */
+export const SignUpFormSchema = z.object({
+  name: z.string().min(1, 'Full Name must have at least 1 character'),
+  email: z.email('Must be a valid email address').min(1, 'Email is required'),
+  password: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+});
+/**
+ * Validate Sign Up Form Input Schema
+ */
+export type SignUpFormInputSchema = z.input<typeof SignUpFormSchema>;
+/**
+ * Validate Sign Up Form Output Schema
+ */
+export type SignUpFormOutputSchema = z.output<typeof SignUpFormSchema>;
