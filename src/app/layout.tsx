@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { josefin_slab, open_sans } from '@/lib/font';
 import clsx from 'clsx';
-import { SanityLive } from '@/sanity/lib/live';
+import React from 'react';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: {
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
   description: `Portfolio of Sai Say Noom Leng, a software engineer building modern web applications with a focus on frontend development, full-stack architecture, and thoughtful user experiences.`,
 };
 
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
@@ -26,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <SanityLive />
+        <Toaster richColors closeButton position="bottom-center" />
       </body>
     </html>
   );
