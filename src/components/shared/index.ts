@@ -13,3 +13,4 @@ export * from './LoadingSpinner';
 export * from './ProjectSection';
 export * from './CertificateBadge';
 export * from './ProjectCard';
+export * from './Skeletons';

@@ -14,4 +14,7 @@ export default defineCliConfig({
     schema: './src/sanity/schema.json',
     generates: './src/sanity/types.ts',
   },
+  deployment: {
+    appId: 'kwkpq8hohygyd09bvtzpk37h',
+  },
 });
