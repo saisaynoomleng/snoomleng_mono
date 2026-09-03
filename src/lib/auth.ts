@@ -9,6 +9,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { env } from './env/server';
 import { admin } from 'better-auth/plugins';
 import { nextCookies } from 'better-auth/next-js';
+import { handleSignUpVerification } from '../actions/handleSignUpVerification';
 
 export const auth = betterAuth({
   appName: 'snoomleng',
@@ -38,7 +39,9 @@ export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
 
   emailVerification: {
-    sendVerificationEmail: async () => {},
+    sendVerificationEmail: async ({ user, url }) => {
+      void handleSignUpVerification({ user, url });
+    },
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     expiresIn: 3600,
