@@ -12,10 +12,14 @@ export const env = createEnv({
     NEXT_PUBLIC_SANITY_PROJECT_ID: z
       .string()
       .min(1, 'Sanity Project ID must have at least 1 character'),
+    NEXT_PUBLIC_LOGO_URL: z.url('Must be a valid URL'),
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_LOGO_URL: process.env.NEXT_PUBLIC_LOGO_URL,
   },
+
+  skipValidation: !!process.env.SKIP_VALIDATION,
 });
