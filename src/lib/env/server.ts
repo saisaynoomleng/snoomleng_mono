@@ -20,6 +20,11 @@ export const env = createEnv({
       .string()
       .min(1, 'AWS Secret Acesss Key must have at least 1 character'),
     AWS_REGION: z.string().min(1, 'AWS Region must have at least 1 character'),
+
+    BETTER_AUTH_SECRET: z
+      .string()
+      .min(1, 'Better Auth secret must have at least 1 character'),
+    BETTER_AUTH_URL: z.url('Must be a valid URL'),
   },
   runtimeEnv: {
     SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
@@ -28,6 +33,9 @@ export const env = createEnv({
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_REGION: process.env.AWS_REGION,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
   },
+
   skipValidation: !!process.env.SKIP_VALIDATION,
 });

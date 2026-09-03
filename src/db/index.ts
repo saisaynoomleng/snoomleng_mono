@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { env } from '@/lib/env/server';
-import { relations } from 'drizzle-orm/_relations';
+import { relations } from './relations';
 import { Pool } from 'pg';
 import { remember } from '@epic-web/remember';
 
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
   client = remember('DB Pool', () => createPool());
 }
 
-const db = drizzle({ client, logger: true });
+const db = drizzle({ relations, client, logger: true });
 
 export default db;
 export * from './schema';
