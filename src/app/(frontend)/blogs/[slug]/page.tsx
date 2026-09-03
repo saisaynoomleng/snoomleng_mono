@@ -1,5 +1,7 @@
-import { Bounded, SanityPortableText, SectionTitle } from '@/components/shared';
 import { BlogCard } from '@/components/shared/BlogCard/BlogCard';
+import { Bounded } from '@/components/shared/Bounded/Bounded';
+import { SanityPortableText } from '@/components/shared/SanityPortableText/SanityPortableText';
+import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
 import { formatDate } from '@/lib/formatter';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';

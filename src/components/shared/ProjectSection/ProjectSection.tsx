@@ -1,6 +1,4 @@
 import React from 'react';
-import { Bounded, SectionTitle } from '../../shared';
-
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
@@ -14,6 +12,8 @@ import {
 import { SiGithub } from 'react-icons/si';
 import { CiLink } from 'react-icons/ci';
 import { AnimateSlideIn } from '@/components/animations';
+import { Bounded } from '../Bounded/Bounded';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
 
 type ProjectSectionProps = {
   className?: string;

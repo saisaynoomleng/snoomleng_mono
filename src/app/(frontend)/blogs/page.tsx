@@ -1,5 +1,6 @@
-import { Bounded, SectionTitle } from '@/components/shared';
+import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
 import { BlogCard } from '@/components/shared/BlogCard/BlogCard';
+import { Bounded } from '@/components/shared/Bounded/Bounded';
 import { sanityFetch } from '@/sanity/lib/live';
 import { ALL_BLOGS_QUERY } from '@/sanity/lib/query';
 import type { Metadata } from 'next';

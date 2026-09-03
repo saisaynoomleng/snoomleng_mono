@@ -1,4 +1,4 @@
-import { ProjectPageSkeleton } from '@/components/shared';
+import { ProjectPageSkeleton } from '@/components/shared/Skeletons';
 
 const Loading = () => {
   return <ProjectPageSkeleton />;

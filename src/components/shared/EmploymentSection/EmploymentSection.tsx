@@ -1,11 +1,13 @@
 import React from 'react';
-import { Bounded, SanityPortableText, SectionTitle } from '../../shared';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
 import { formatYear } from '@/lib/formatter';
 import { PortableText } from 'next-sanity';
 import { AnimateSlideIn, AnimateSlideInStagger } from '@/components/animations';
+import { Bounded } from '../Bounded/Bounded';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
+import { SanityPortableText } from '../SanityPortableText/SanityPortableText';
 
 export type EmployementSectionProps = {
   className?: string;

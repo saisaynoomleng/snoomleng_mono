@@ -10,6 +10,7 @@ export const getAllContacts = async () => {
         id: true,
         email: true,
         subject: true,
+        status: true,
       },
     });
 

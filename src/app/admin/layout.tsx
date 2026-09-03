@@ -8,7 +8,7 @@ export default function AdminLayout({ children }: LayoutProps<'/admin'>) {
       <QueryProvider>
         <SidebarProvider>
           <AdminSidebar />
-          <main>
+          <main className="w-full">
             <SidebarTrigger className="border-0" />
 
             {children}

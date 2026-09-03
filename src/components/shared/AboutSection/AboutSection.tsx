@@ -1,4 +1,3 @@
-import { Bounded, SanityPortableText, SectionTitle } from '../../shared';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
@@ -6,6 +5,9 @@ import { notFound } from 'next/navigation';
 import { PortableText } from 'next-sanity';
 import { AboutSpec } from './AboutSpec';
 import { AnimateSlideIn } from '@/components/animations';
+import { Bounded } from '../Bounded/Bounded';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
+import { SanityPortableText } from '../SanityPortableText/SanityPortableText';
 
 type AboutSectionProps = {
   className?: string;

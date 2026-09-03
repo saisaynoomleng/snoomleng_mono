@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bounded, SectionTitle } from '../../shared';
+import { SectionTitle } from '../../shared/SectionTitle/SectionTitle';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import {
@@ -37,6 +37,7 @@ import {
 import { FaGolang, FaNode, FaStripe } from 'react-icons/fa6';
 import { FaAws } from 'react-icons/fa';
 import { AnimateSlideIn, AnimateSlideInStagger } from '@/components/animations';
+import { Bounded } from '../Bounded/Bounded';
 
 export type TechnologySectionProps = {
   className?: string;

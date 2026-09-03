@@ -10,3 +10,10 @@ export const useGetAllContacts = () => {
     queryKey: queryKeys.contacts.all,
   });
 };
+
+// export const useGetContact = () => {
+//   return useQuery({
+//     queryFn: undefined,
+//     queryKey: null,
+//   });
+// };

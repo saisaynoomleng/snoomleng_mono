@@ -1,7 +1,7 @@
 import { AnimateSlideIn } from '@/components/animations';
-import { Bounded } from '../Bounded';
-import { ContactForm } from '../ContactForm';
-import { SectionTitle } from '../SectionTitle';
+import { Bounded } from '../Bounded/Bounded';
+import { ContactForm } from '../ContactForm/ContactForm';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
 import { ContactDetail } from './ContactDetail';
 
 export const ContactSection = () => {
