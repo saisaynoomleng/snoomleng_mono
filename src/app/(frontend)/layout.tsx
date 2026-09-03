@@ -1,5 +1,6 @@
 import { Footer, MainNav } from '@/components/shared';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { SanityLive } from '@/sanity/lib/live';
 import React from 'react';
 import { Toaster } from 'sonner';
 
@@ -12,6 +13,8 @@ const FrontendLayout = ({
         <MainNav />
         {children}
         <Footer />
+
+        <SanityLive />
       </main>
 
       <Toaster

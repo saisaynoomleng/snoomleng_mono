@@ -20,3 +20,23 @@ export type ContactFormInputSchema = z.input<typeof ContactFormSchema>;
  * Validate Contact Form Output Schema
  */
 export type ContactFormOutputSchema = z.output<typeof ContactFormSchema>;
+
+/**
+ * Validate Sign In Form Schema
+ */
+export const SignInFormSchema = z.object({
+  email: z.email('Must be a valid email address').min(1, 'Email is required'),
+  password: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  rememberMe: z.boolean().default(false),
+});
+/**
+ * Validate Sign In Form Input Schema
+ */
+export type SignInFormInputSchema = z.input<typeof SignInFormSchema>;
+/**
+ * Validate Sign In Form Output Schema
+ */
+export type SignInFormOutputSchema = z.output<typeof SignInFormSchema>;

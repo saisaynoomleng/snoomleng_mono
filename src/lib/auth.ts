@@ -8,11 +8,12 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { env } from './env/server';
 import { admin } from 'better-auth/plugins';
+import { nextCookies } from 'better-auth/next-js';
 
 export const auth = betterAuth({
   appName: 'snoomleng',
 
-  plugins: [admin()],
+  plugins: [admin(), nextCookies()],
 
   baseURL: {
     allowedHosts: ['snoomleng.com', 'www.snoomleng.com'],

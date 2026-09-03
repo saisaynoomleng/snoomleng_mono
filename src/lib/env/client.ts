@@ -4,6 +4,8 @@ import * as z from 'zod';
 export const env = createEnv({
   emptyStringAsUndefined: true,
   client: {
+    NEXT_PUBLIC_APP_URL: z.url('Must be a valid URL'),
+
     NEXT_PUBLIC_SANITY_DATASET: z
       .enum(['production', 'development'])
       .default('production'),
@@ -12,6 +14,7 @@ export const env = createEnv({
       .min(1, 'Sanity Project ID must have at least 1 character'),
   },
   runtimeEnv: {
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   },
