@@ -1,4 +1,5 @@
-import { Footer, MainNav } from '@/components/shared';
+import { Footer } from '@/components/shared/Footer/Footer';
+import { MainNav } from '@/components/shared/MainNav/MainNav';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { SanityLive } from '@/sanity/lib/live';
 import React from 'react';

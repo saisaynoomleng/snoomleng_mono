@@ -1,7 +1,7 @@
 import { urlFor } from '@/sanity/lib/image';
 import { PortableTextComponents } from 'next-sanity';
 import Image from 'next/image';
-import { SectionTitle } from '../SectionTitle';
+import { SectionTitle } from '../SectionTitle/SectionTitle';
 import Link from 'next/link';
 
 export const SanityPortableText: PortableTextComponents = {

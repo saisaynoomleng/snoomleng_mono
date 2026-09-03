@@ -1,11 +1,11 @@
 import { HOME_PAGE_QUERY_RESULT } from '@/sanity/types';
-import { Bounded } from '../Bounded';
+import { Bounded } from '../Bounded/Bounded';
 import { twMerge } from 'tailwind-merge';
 import clsx from 'clsx';
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { PortableText } from 'next-sanity';
-import { SanityPortableText } from '../SanityPortableText';
+import { SanityPortableText } from '../SanityPortableText/SanityPortableText';
 import Link from 'next/link';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';

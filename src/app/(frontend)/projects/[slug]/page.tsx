@@ -1,4 +1,3 @@
-import { Bounded, SanityPortableText, SectionTitle } from '@/components/shared';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { formatDate, formatTitle, replaceDashWithSpace } from '@/lib/formatter';
 import { sanityFetch } from '@/sanity/lib/live';
@@ -9,6 +8,9 @@ import { notFound } from 'next/navigation';
 import { FaArrowLeft } from 'react-icons/fa';
 import { ProjectLink } from './ProjectLink';
 import { PortableText } from 'next-sanity';
+import { Bounded } from '@/components/shared/Bounded/Bounded';
+import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
+import { SanityPortableText } from '@/components/shared/SanityPortableText/SanityPortableText';
 
 type SlugParamsProps = {
   params: Promise<{ slug: string }>;

@@ -1,6 +1,6 @@
 'use client';
 
-import { Bounded } from '@/components/shared/Bounded';
+import { Bounded } from '@/components/shared/Bounded/Bounded';
 import {
   Card,
   CardContent,

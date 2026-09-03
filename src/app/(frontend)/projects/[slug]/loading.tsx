@@ -1,4 +1,4 @@
-import { DetailPageSkeleton } from '@/components/shared';
+import { DetailPageSkeleton } from '@/components/shared/Skeletons';
 
 const Loading = () => {
   return <DetailPageSkeleton />;

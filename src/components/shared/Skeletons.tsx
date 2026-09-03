@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bounded } from './Bounded';
+import { Bounded } from './Bounded/Bounded';
 import { Skeleton } from '../ui/skeleton';
 
 export const HomePageSkeleton = (): React.JSX.Element => {
@@ -163,6 +163,50 @@ export const DetailPageSkeleton = () => {
         <Skeleton className="w-full h-150" />
         <Skeleton className="w-full h-150" />
       </div>
+    </Bounded>
+  );
+};
+
+export const AdminContactPageSkeleton = () => {
+  return (
+    <Bounded spacing="sm" size="full" centered={false}>
+      <div className="grid grid-cols-2 gap-x-2 ">
+        <Skeleton className="w-full h-20" />
+        <Skeleton className="w-full h-20" />
+      </div>
+
+      <Skeleton className="w-full h-20" />
+
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+      <Skeleton className="w-full h-20" />
+    </Bounded>
+  );
+};
+
+export const AdminContactDataSkeleton = () => {
+  return (
+    <Bounded spacing="sm" size="full" centered={false}>
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
+      <Skeleton className="w-full h-10" />
     </Bounded>
   );
 };

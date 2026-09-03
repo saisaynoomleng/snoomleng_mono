@@ -10,8 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { handleContactForm } from '@/actions/handleContactForm';
 import { toast } from 'sonner';
-import { SectionTitle } from '../SectionTitle';
-import { Bounded } from '../Bounded';
 import { Input } from '@/components/ui/input';
 import {
   InputGroup,

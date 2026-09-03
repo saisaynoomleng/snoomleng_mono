@@ -4,14 +4,15 @@ import {
   AnimateTextLineFillIn,
   AnimateTypeWriter,
 } from '@/components/animations';
+
+import { Bounded } from '@/components/shared/Bounded/Bounded';
+import { CertificateBadge } from '@/components/shared/CertificateBadge/CertificateBadge';
+import { SanityPortableText } from '@/components/shared/SanityPortableText/SanityPortableText';
+import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
 import {
-  Bounded,
-  CertificateBadge,
-  SanityPortableText,
-  SectionTitle,
   TechnologyProps,
   TechnologySection,
-} from '@/components/shared';
+} from '@/components/shared/TechSection/TechSection';
 import { Separator } from '@/components/ui/separator';
 import { sanityFetch } from '@/sanity/lib/live';
 import { ABOUT_PAGE_QUERY } from '@/sanity/lib/query';

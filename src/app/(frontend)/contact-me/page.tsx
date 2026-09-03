@@ -1,4 +1,5 @@
-import { Bounded, ContactSection } from '@/components/shared';
+import { ContactSection } from '@/components/shared/ContactSection/ContactSection';
+import { Bounded } from '@/components/shared/Bounded/Bounded';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
