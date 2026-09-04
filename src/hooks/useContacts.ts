@@ -1,6 +1,6 @@
 'use client';
 
-import { getAllContacts } from '@/lib/dal';
+import { getAllContacts, getContactById } from '@/lib/dal';
 import { queryKeys } from '@/lib/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 
@@ -11,9 +11,9 @@ export const useGetAllContacts = () => {
   });
 };
 
-// export const useGetContact = () => {
-//   return useQuery({
-//     queryFn: undefined,
-//     queryKey: null,
-//   });
-// };
+export const useGetContactById = ({ id }: { id: string }) => {
+  return useQuery({
+    queryFn: async () => await getContactById({ id }),
+    queryKey: queryKeys.contacts.byId(id),
+  });
+};

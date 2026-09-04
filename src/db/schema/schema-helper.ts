@@ -14,6 +14,8 @@ export const timestamps = {
 
 export const ContactStatus = t.pgEnum('contactStatus', [
   'new',
+  'in_progress',
   'replied',
+  'resolved',
   'spam',
 ]);

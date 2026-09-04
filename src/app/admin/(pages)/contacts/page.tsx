@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/table';
 import { useSearchParams } from 'next/navigation';
 import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
+import { replaceSpaceWithUnderscore } from '@/lib/formatter';
 
 const ContactDetailPage = (): React.JSX.Element => {
   const { data: contacts, isPending, isError } = useGetAllContacts();
@@ -29,7 +30,11 @@ const ContactDetailPage = (): React.JSX.Element => {
 
   const allContacts =
     filter && filter !== 'None'
-      ? contacts.filter((f) => f.status.toLowerCase() === filter.toLowerCase())
+      ? contacts.filter(
+          (f) =>
+            f.status.toLowerCase() ===
+            replaceSpaceWithUnderscore(filter.toLowerCase()),
+        )
       : contacts;
 
   return (
@@ -54,6 +59,7 @@ const ContactDetailPage = (): React.JSX.Element => {
           <TableRow>
             <TableHead className="text-left">Name</TableHead>
             <TableHead className="text-center">Subject</TableHead>
+            <TableHead className="text-center">Date</TableHead>
             <TableHead className="text-right">Email</TableHead>
           </TableRow>
         </TableHeader>

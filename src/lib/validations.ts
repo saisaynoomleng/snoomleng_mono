@@ -64,3 +64,23 @@ export type SignUpFormInputSchema = z.input<typeof SignUpFormSchema>;
  * Validate Sign Up Form Output Schema
  */
 export type SignUpFormOutputSchema = z.output<typeof SignUpFormSchema>;
+
+/**
+ * Validate Contact Reply Form Schema
+ */
+export const ContactReplyFormSchema = z.object({
+  id: z.string(),
+  email: z.email('Must be a valid email address').min(1, 'Email is required'),
+  message: z
+    .string()
+    .min(1, 'Message must have at least 1 character')
+    .max(3000, 'Message cannot exceeds 3000 character'),
+});
+/**
+ * Validate Contact Reply Input Form Schema
+ */
+export type ContactReplyInputSchema = z.input<typeof ContactReplyFormSchema>;
+/**
+ * Validate Contact Reply Output Form Schema
+ */
+export type ContactReplyOutputSchema = z.output<typeof ContactReplyFormSchema>;
