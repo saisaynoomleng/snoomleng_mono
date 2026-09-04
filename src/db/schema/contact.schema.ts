@@ -7,6 +7,6 @@ export const ContactTable = t.pgTable('contacts', {
   email: t.varchar('email', { length: 255 }).notNull(),
   subject: t.text('subject').notNull(),
   message: t.text('message').notNull(),
-  status: ContactStatus('status').notNull(),
+  status: ContactStatus('status').notNull().default('new'),
   ...timestamps,
 });

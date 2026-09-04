@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { TableCell, TableRow } from '../ui/table';
 import { useRouter } from 'next/navigation';
+import { formatDate } from '@/lib/formatter';
 
 type ContactCardProps = {
   className?: string;
@@ -11,6 +12,7 @@ type ContactCardProps = {
   name: string;
   email: string;
   subject: string;
+  createdAt: string | Date;
 };
 
 export const ContactCard = ({
@@ -19,6 +21,7 @@ export const ContactCard = ({
   name,
   email,
   subject,
+  createdAt,
 }: ContactCardProps) => {
   const router = useRouter();
 
@@ -32,6 +35,7 @@ export const ContactCard = ({
       <TableCell className="font-semibold text-primary text-center">
         {subject}
       </TableCell>
+      <TableCell className="text-center">{formatDate(createdAt)}</TableCell>
       <TableCell className="text-right">{email}</TableCell>
     </TableRow>
   );

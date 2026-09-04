@@ -11,6 +11,7 @@ export const getAllContacts = async () => {
         email: true,
         subject: true,
         status: true,
+        createdAt: true,
       },
     });
 
@@ -18,5 +19,29 @@ export const getAllContacts = async () => {
   } catch (error) {
     console.error('Fetch all contact error', error);
     return [];
+  }
+};
+
+export const getContactById = async ({ id }: { id: string }) => {
+  try {
+    const data = await db.query.ContactTable.findFirst({
+      columns: {
+        name: true,
+        email: true,
+        subject: true,
+        message: true,
+        status: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      where: {
+        id,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Get Contact Data with ID error', error);
+    throw error;
   }
 };

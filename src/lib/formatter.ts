@@ -106,3 +106,12 @@ export const formatImageSize = (size: number): string => {
 
   return `${size} bytes`;
 };
+
+/**
+ * Replace Whitespaces with Underscore '_'
+ * @param input string
+ * @returns string
+ */
+export const replaceSpaceWithUnderscore = (input: string): string => {
+  return input.replace(/\s+/g, '_');
+};

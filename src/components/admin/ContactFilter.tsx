@@ -8,7 +8,7 @@ import {
 } from '../ui/dropdown-menu';
 import { IoFilter } from 'react-icons/io5';
 
-const Filter_BY = ['New', 'Replied', 'None'];
+const Filter_BY = ['New', 'In Progress', 'Replied', 'Resolved', 'Spam', 'None'];
 
 export const ContactFilter = () => {
   return (

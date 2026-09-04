@@ -3,7 +3,6 @@
 My personal developer portfolio and blog, built to showcase my projects, technical experience, and writing.
 
 🌐 **Live:** [snoomleng.com](https://snoomleng.com)
-📝 **Blog:** [blog.snoomleng.com](https://blog.snoomleng.com)
 
 ## Tech Stack
 
@@ -24,7 +23,6 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 ### Backend
 
 - Node.js
-- Express
 - Sanity CMS
 - PostgreSQL
 - Neon
@@ -36,7 +34,6 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 
 - Vitest
 - Playwright
-- Turborepo
 - pnpm
 
 ### DevOps
@@ -49,12 +46,9 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 
 ### Cloud & Infrastructure
 
-- CloudFront
 - CloudWatch
 - EC2
 - ECR
-- SQS
-- Lambda
 - SES
 - Security Groups
 - Secrets Manager
@@ -71,7 +65,6 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 - Admin dashboard
 - REST API
 - PostgreSQL database
-- Asynchronous email processing with SQS + Lambda + SES
 - Dockerized services
 - CI/CD with GitHub Actions
 
@@ -129,4 +122,4 @@ GitHub Actions automatically runs checks such as linting, type checking, and bui
 
 Developer focused on full-stack development, backend engineering, and cloud infrastructure.
 
-[Portfolio](https://snoomleng.com) · [Blog](https://blog.snoomleng.com)
+[Portfolio](https://snoomleng.com)
