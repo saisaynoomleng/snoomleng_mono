@@ -1,6 +1,6 @@
 # snoomleng — Personal Portfolio
 
-My personal developer portfolio and blog, built to showcase my projects, technical experience, and writing.
+My personal developer portfolio and technical blog, built to showcase my projects, experience, and writing.
 
 🌐 **Live:** [snoomleng.com](https://snoomleng.com)
 
@@ -10,24 +10,24 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 
 - Next.js
 - React
-- Tailwind CSS
-- shadCn/UI
 - TypeScript
-- zod
-- Storybook
+- Tailwind CSS
+- shadcn/ui
 - React Hook Form
-- React Portable Text
-- Tanstack Query
+- Zod
+- TanStack Query
 - GSAP
+- Storybook
 
 ### Backend
 
+- Next.js Server Actions & API Routes
 - Node.js
-- Sanity CMS
 - PostgreSQL
 - Neon
-- betterAuth
 - Drizzle ORM
+- better-auth
+- Sanity CMS
 - React Email
 
 ### Testing & Tooling
@@ -35,50 +35,51 @@ My personal developer portfolio and blog, built to showcase my projects, technic
 - Vitest
 - Playwright
 - pnpm
+- ESLint
 
-### DevOps
+### DevOps & Infrastructure
 
 - Docker
 - GitHub Actions
 - Nginx
 - Linux
-- Git/GitHub
-
-### Cloud & Infrastructure
-
-- CloudWatch
-- EC2
-- ECR
-- SES
-- Security Groups
-- Secrets Manager
+- Git & GitHub
+- AWS EC2
+- AWS ECR
+- AWS SES
+- AWS Secrets Manager
+- AWS Security Groups
 - Certbot
-- Nginx
 
 ## Features
 
-- Responsive portfolio
+- Responsive personal portfolio
 - Project showcase
 - Technical blog
 - Sanity-powered content management
-- Contact form
 - Admin dashboard
-- REST API
+- Authentication
+- Contact form
+- REST API endpoints
 - PostgreSQL database
-- Dockerized services
-- CI/CD with GitHub Actions
+- Transactional email
+- Dockerized production deployment
+- Automated CI/CD with GitHub Actions
+- HTTPS with Nginx and Certbot
 
 ## Architecture
 
-The project is organized as a monorepo containing multiple applications and shared packages.
+The project is built as a **monolithic Next.js application**.
 
-The application is built as a collection of independent services rather than a single monolithic application. The portfolio and blog are separate Next.js applications, while an Express API handles backend operations and PostgreSQL stores structured application data.
+The frontend, backend logic, authentication, API endpoints, and application UI live within a single codebase. PostgreSQL is used for structured application data, while Sanity CMS manages editorial content such as blog posts and portfolio content.
 
-Content-heavy blog data is managed through Sanity, keeping editorial content separate from application data.
+Server Actions and API routes handle backend operations, while Drizzle ORM provides type-safe database access.
 
-The contact system uses asynchronous processing with Amazon SQS and Lambda. Contact requests are placed into a queue and processed independently, allowing the API to respond without waiting for email delivery through Amazon SES.
+The contact system stores submissions in PostgreSQL and uses Amazon SES for transactional email delivery.
 
-The applications are containerized with Docker and deployed through a CI/CD pipeline using GitHub Actions and AWS infrastructure.
+The application is containerized with Docker and deployed to an AWS EC2 instance. Nginx acts as the reverse proxy and handles HTTPS traffic, with TLS certificates managed through Certbot.
+
+GitHub Actions automates the CI/CD workflow, including validation, building, and deployment.
 
 ## Development
 
@@ -88,23 +89,27 @@ The applications are containerized with Docker and deployed through a CI/CD pipe
 - pnpm
 - Docker
 
-### Install
+### Installation
 
 ```bash
 git clone https://github.com/saisaynoomleng/snoomleng.git
+
 cd snoomleng
+
 pnpm install
 ```
 
 ### Environment Variables
 
-Create the required `.env` files based on `.env.example`.
+Create the required environment variables using the provided `.env.example` files.
 
-### Run
+Never commit production secrets or credentials to the repository.
 
 ```bash
 pnpm dev
 ```
+
+The application will start in development mode.
 
 ### Build
 
@@ -112,9 +117,78 @@ pnpm dev
 pnpm build
 ```
 
+### Production
+
+The application can be built and run using Docker.
+
+```bash
+docker build -t snoomleng .
+docker run -p 3000:3000 snoomleng
+```
+
 ## CI/CD
 
-GitHub Actions automatically runs checks such as linting, type checking, and builds before deploying changes to production.
+GitHub Actions automates the production workflow.
+
+Changes pushed to the repository are validated through automated checks such as:
+
+- Linting
+- Type checking
+- Tests
+- Production builds
+
+Successful builds can then be deployed to the production EC2 environment.
+
+## Deployment Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │       Browser       │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       Nginx         │
+                    │   Reverse Proxy     │
+                    │       HTTPS         │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+              ┌────────────────────────────────┐
+              │        Next.js Monolith        │
+              │                                │
+              │  Portfolio                     │
+              │  Blog                          │
+              │  Admin                         │
+              │  Server Actions                │
+              │  API Routes                    │
+              │  Authentication                │
+              │  Application Logic             │
+              └───────────────┬────────────────┘
+                              │
+                 ┌────────────┴─────────────┐
+                 │                          │
+                 ▼                          ▼
+        ┌─────────────────┐       ┌─────────────────┐
+        │   PostgreSQL    │       │   Sanity CMS    │
+        │      Neon       │       │   Blog/Content  │
+        └─────────────────┘       └─────────────────┘
+                 │
+                 │
+                 ▼
+        ┌─────────────────┐
+        │   Amazon SES    │
+        │  Transactional  │
+        │      Email      │
+        └─────────────────┘
+
+        Deployment / Infrastructure
+
+        GitHub Actions
+              │
+              ▼
+        Docker → ECR → EC2
+```
 
 ## Author
 
