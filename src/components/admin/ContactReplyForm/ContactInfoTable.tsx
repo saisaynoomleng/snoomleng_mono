@@ -18,7 +18,7 @@ export const ContactInfoTable = ({
   className,
 }: ContactInfoTableProps) => {
   return (
-    <Table className={twMerge(clsx('', className))}>
+    <Table className={twMerge(clsx('w-full table-fixed', className))}>
       <TableBody>
         <TableRow>
           <TableCell className="font-semibold">Name</TableCell>
@@ -37,7 +37,9 @@ export const ContactInfoTable = ({
 
         <TableRow>
           <TableCell className="font-semibold">Message</TableCell>
-          <TableCell>{message}</TableCell>
+          <TableCell className="whitespace-normal wrap-break-word">
+            {message}
+          </TableCell>
         </TableRow>
 
         <TableRow>

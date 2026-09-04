@@ -1,5 +1,6 @@
 'use client';
 
+import { ContactHistoryTable } from '@/components/admin/ContactReplyForm/ContactHistory';
 import { ContactInfoTable } from '@/components/admin/ContactReplyForm/ContactInfoTable';
 import { ContactReplyForm } from '@/components/admin/ContactReplyForm/ContactReplyForm';
 import { MutateFormStatus } from '@/components/admin/ContactReplyForm/MutateFormStatus';
@@ -92,8 +93,9 @@ const ContactDetailPage = () => {
       </div>
 
       <div className="flex flex-col gap-y-4">
-        <h3 className="font-semibold text-fs-500">History</h3>
-        {/* todo contact history */}
+        <h3 className="font-semibold text-fs-500">Replied History</h3>
+
+        <ContactHistoryTable messages={messages} />
       </div>
     </Bounded>
   );
