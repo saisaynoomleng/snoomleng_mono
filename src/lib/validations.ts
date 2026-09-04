@@ -140,3 +140,14 @@ export const ChangeUserInfoFormSchema = z.object({
  * Validate Change User Info Form input
  */
 export type ChangeUserInfoFormInput = z.input<typeof ChangeUserInfoFormSchema>;
+
+/**
+ * Validate Email Update
+ */
+export const AdminUpdateEmailFormSchema = z.object({
+  email: z.email('Must be a valid email address'),
+});
+/**
+ * Validate Email Update Input
+ */
+export type AdminUpdateEmailInput = z.input<typeof AdminUpdateEmailFormSchema>;

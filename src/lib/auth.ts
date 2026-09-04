@@ -9,7 +9,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { env } from './env/server';
 import { admin } from 'better-auth/plugins';
 import { nextCookies } from 'better-auth/next-js';
-import { handleSignUpVerification } from '../actions/handleSignUpVerification';
+import { handleVerificationEmail } from '../actions/handleVerificationEmail';
 
 export const auth = betterAuth({
   appName: 'snoomleng',
@@ -40,7 +40,12 @@ export const auth = betterAuth({
 
   emailVerification: {
     sendVerificationEmail: async ({ user, url }) => {
-      void handleSignUpVerification({ user, url });
+      void handleVerificationEmail({
+        user,
+        url,
+        verificationText:
+          'Verify Your Email. If this is not you, ignore the email',
+      });
     },
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
@@ -61,6 +66,10 @@ export const auth = betterAuth({
     fields: {
       email: 'email',
       name: 'name',
+    },
+    changeEmail: {
+      enabled: true,
+      updateEmailWithoutVerification: true,
     },
   },
 
