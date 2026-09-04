@@ -12,11 +12,15 @@ import {
 import { LogoEmail } from '../LogoEmail';
 import { MyLinkEmail } from '../MyLinkEmail';
 
-type SignUpEmailProps = {
+type VerificationEmailProps = {
   url: string;
+  verificationText: string;
 };
 
-export const SignUpEmail = ({ url }: SignUpEmailProps) => {
+export const VerificationEmail = ({
+  url,
+  verificationText,
+}: VerificationEmailProps) => {
   return (
     <Tailwind
       config={{
@@ -41,7 +45,7 @@ export const SignUpEmail = ({ url }: SignUpEmailProps) => {
             <LogoEmail />
 
             <Section>
-              <Text>Verify your email, if this is not you, just ignore.</Text>
+              <Text>{verificationText}</Text>
               <Link href={url}>Click this link to verify</Link>
             </Section>
 

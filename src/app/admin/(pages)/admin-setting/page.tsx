@@ -2,15 +2,24 @@ import { AdminDashboardBoundary } from '@/components/admin/AdminDashboardBoundar
 import { ChangePasswordForm } from '@/components/admin/AdminSetting/ChangePasswordForm';
 import { ChangeUserInfo } from '@/components/admin/AdminSetting/ChangeUserInfo';
 import { SignOutButton } from '@/components/admin/AdminSetting/SignOutButton';
+import { UpdateEmail } from '@/components/admin/AdminSetting/UpdateEmail';
 import { Bounded } from '@/components/shared/Bounded/Bounded';
 
 const AdminSettingPage = () => {
   return (
     <Bounded centered={false} size="full" className="grid grid-cols-2 gap-6">
       <AdminDashboardBoundary>
-        <h2 className="font-semibold text-fs-500">Updat Info</h2>
+        <AdminDashboardBoundary>
+          <h2 className="font-semibold text-fs-500">Update Info</h2>
 
-        <ChangeUserInfo />
+          <ChangeUserInfo />
+        </AdminDashboardBoundary>
+
+        <AdminDashboardBoundary>
+          <h2 className="font-semibold text-fs-500">Update Email</h2>
+
+          <UpdateEmail />
+        </AdminDashboardBoundary>
       </AdminDashboardBoundary>
 
       <AdminDashboardBoundary>
