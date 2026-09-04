@@ -25,6 +25,15 @@ export const getAllContacts = async () => {
 export const getContactById = async ({ id }: { id: string }) => {
   try {
     const data = await db.query.ContactTable.findFirst({
+      with: {
+        messages: {
+          columns: {
+            message: true,
+            createdAt: true,
+            direction: true,
+          },
+        },
+      },
       columns: {
         name: true,
         email: true,
