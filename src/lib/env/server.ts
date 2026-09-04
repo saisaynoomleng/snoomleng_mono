@@ -10,6 +10,12 @@ export const env = createEnv({
     SANITY_WRITE_TOKEN: z
       .string()
       .min(1, 'Sanity Write Token must have at least 1 character'),
+    SANITY_STUDIO_DATASET: z
+      .enum(['production', 'development'])
+      .default('production'),
+    SANITY_STUDIO_PROJECT_ID: z
+      .string()
+      .min(1, 'Sanity Studio Project ID must have at least 1 character'),
 
     DATABASE_URL: z.string().startsWith('postgresql://'),
 
@@ -29,10 +35,15 @@ export const env = createEnv({
   runtimeEnv: {
     SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
     SANITY_WRITE_TOKEN: process.env.SANITY_READ_TOKEN,
+    SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
+    SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
+
     DATABASE_URL: process.env.DATABASE_URL,
+
     AWS_ACCESS_KEY: process.env.AWS_ACCESS_KEY,
     AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
     AWS_REGION: process.env.AWS_REGION,
+
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
   },

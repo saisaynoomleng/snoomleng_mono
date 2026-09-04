@@ -26,7 +26,9 @@ const ProjectsPage = async (): Promise<React.JSX.Element> => {
   return (
     <Bounded>
       <div className="flex flex-col h-100 justify-center items-center text-center gap-y-4 md:gap-y-6">
-        <SectionTitle label="Building Ideas Into Digital Experiences" as="h2" />
+        <h2 className="text-fs-500 font-semibold text-primary">
+          Building Ideas Into Digital Experiences
+        </h2>
         <p className="font-semibold text-muted-foreground">
           A collection of projects where I explore product development, modern
           web technologies, and thoughtful engineering. Each project represents

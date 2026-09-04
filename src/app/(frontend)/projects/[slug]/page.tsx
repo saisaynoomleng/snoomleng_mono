@@ -145,7 +145,10 @@ const ProjectDetailPage = async ({ params }: SlugParamsProps) => {
       </div>
 
       <SectionTitle label="Project Detail" />
-      {body && <PortableText value={body} components={SanityPortableText} />}
+
+      <div className="prose prose-sm min-w-full">
+        {body && <PortableText value={body} components={SanityPortableText} />}
+      </div>
     </Bounded>
   );
 };
