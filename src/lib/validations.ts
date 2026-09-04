@@ -129,3 +129,14 @@ export type AdminChangePasswordInput = z.input<
 export type AdminChangePasswordOutput = z.output<
   typeof AdminChangePasswordFormSchema
 >;
+
+/**
+ * Validate Change User Info Form Schema
+ */
+export const ChangeUserInfoFormSchema = z.object({
+  name: z.string().min(1, 'Name must have at least 1 character'),
+});
+/**
+ * Validate Change User Info Form input
+ */
+export type ChangeUserInfoFormInput = z.input<typeof ChangeUserInfoFormSchema>;
