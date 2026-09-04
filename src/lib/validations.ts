@@ -69,7 +69,7 @@ export type SignUpFormOutputSchema = z.output<typeof SignUpFormSchema>;
  * Validate Contact Reply Form Schema
  */
 export const ContactReplyFormSchema = z.object({
-  id: z.string(),
+  originalContactId: z.string(),
   email: z.email('Must be a valid email address').min(1, 'Email is required'),
   message: z
     .string()

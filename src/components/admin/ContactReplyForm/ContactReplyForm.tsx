@@ -1,5 +1,6 @@
 'use client';
 
+import { LoadingSpinner } from '@/components/shared/LoadingSpinner';
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import {
@@ -15,11 +16,13 @@ import { Controller, SubmitHandler, UseFormReturn } from 'react-hook-form';
 type ContactReplyFormProps = {
   form: UseFormReturn<ContactReplyInputSchema>;
   onSubmit: SubmitHandler<ContactReplyInputSchema>;
+  pending: boolean;
 };
 
 export const ContactReplyForm = ({
   form,
   onSubmit,
+  pending,
 }: ContactReplyFormProps): React.JSX.Element => {
   return (
     <form
@@ -49,7 +52,15 @@ export const ContactReplyForm = ({
       />
 
       <Field orientation="horizontal">
-        <Button>Reply</Button>
+        <Button disabled={pending}>
+          {pending ? (
+            <span>
+              <LoadingSpinner />
+            </span>
+          ) : (
+            <span>Reply</span>
+          )}
+        </Button>
       </Field>
     </form>
   );
