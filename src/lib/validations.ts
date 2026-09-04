@@ -98,3 +98,34 @@ export const ContactFormStatusSchema = z.object({
  * Validate Contact Form Status Input
  */
 export type ContactFormStatusInput = z.infer<typeof ContactFormStatusSchema>;
+
+/**
+ * Validate Admin Change Password Form Schema
+ */
+export const AdminChangePasswordFormSchema = z.object({
+  currentPassword: z
+    .string()
+    .min(8, 'Current Password must have at least 8 characters')
+    .max(128, 'Current Password cannot exceeds 128 characters'),
+  password: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  revokeSessions: z.boolean().default(false),
+});
+/**
+ * Validate Admin Change Password Form Input
+ */
+export type AdminChangePasswordInput = z.input<
+  typeof AdminChangePasswordFormSchema
+>;
+/**
+ * Vailate Admin Change Passowrd Form Output
+ */
+export type AdminChangePasswordOutput = z.output<
+  typeof AdminChangePasswordFormSchema
+>;

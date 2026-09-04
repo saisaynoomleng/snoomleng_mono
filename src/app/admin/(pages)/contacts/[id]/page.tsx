@@ -1,5 +1,6 @@
 'use client';
 
+import { AdminDashboardBoundary } from '@/components/admin/AdminDashboardBoundary';
 import { ContactHistoryTable } from '@/components/admin/ContactReplyForm/ContactHistory';
 import { ContactInfoTable } from '@/components/admin/ContactReplyForm/ContactInfoTable';
 import { ContactReplyForm } from '@/components/admin/ContactReplyForm/ContactReplyForm';
@@ -66,7 +67,7 @@ const ContactDetailPage = () => {
       <BackToPage href="/admin/contacts" label="Back to All Contacts" />
 
       <div className="grid grid-cols-2 gap-x-12">
-        <div className="flex flex-col gap-y-2 border p-4 border-border/20">
+        <AdminDashboardBoundary className="flex flex-col gap-y-2">
           <h2 className="font-semibold text-fs-500">Contact Info</h2>
 
           <ContactInfoTable
@@ -79,9 +80,9 @@ const ContactDetailPage = () => {
           />
 
           <MutateFormStatus id={id} className="justify-end" />
-        </div>
+        </AdminDashboardBoundary>
 
-        <div className="flex flex-col gap-y-2 border p-4 border-border/20 justify-between">
+        <AdminDashboardBoundary className="flex flex-col gap-y-2">
           <h2 className="font-semibold text-fs-500">Reply</h2>
 
           <ContactReplyForm
@@ -89,7 +90,7 @@ const ContactDetailPage = () => {
             onSubmit={onReply}
             pending={replyPending}
           />
-        </div>
+        </AdminDashboardBoundary>
       </div>
 
       <div className="flex flex-col gap-y-4">

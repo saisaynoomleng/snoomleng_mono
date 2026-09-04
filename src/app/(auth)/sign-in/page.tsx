@@ -38,6 +38,7 @@ const SignInPage = () => {
         email: data.email,
         password: data.password,
         rememberMe: data.rememberMe,
+        callbackURL: '/admin',
       },
       {
         onSuccess: () => {
