@@ -1,6 +1,8 @@
 'use server';
 
 import db from '@/db';
+import { auth } from './auth';
+import { headers } from 'next/headers';
 
 export const getAllContacts = async () => {
   try {
@@ -52,6 +54,40 @@ export const getContactById = async ({ id }: { id: string }) => {
     return data;
   } catch (error) {
     console.error('Get Contact Data with ID error', error);
+    throw error;
+  }
+};
+
+export const getUserIdFromSession = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) return null;
+
+  const userId = session.user.id;
+
+  return userId;
+};
+
+export const getUser = async (id: string) => {
+  try {
+    const data = await db.query.UserTable.findFirst({
+      columns: {
+        name: true,
+        email: true,
+        emailVerified: true,
+        createdAt: true,
+        role: true,
+      },
+      where: {
+        id,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Ger User Error', error);
     throw error;
   }
 };
