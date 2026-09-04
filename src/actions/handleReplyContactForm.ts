@@ -6,16 +6,16 @@ import { env } from '@/lib/env/server';
 import { ActionResponse } from '@/lib/types';
 import {
   ContactReplyFormSchema,
-  ContactReplyInputSchema,
-  ContactReplyOutputSchema,
+  ContactReplyInput,
+  ContactReplyOutput,
 } from '@/lib/validations';
 import { SendEmailCommand, SESClient } from '@aws-sdk/client-ses';
 import { eq } from 'drizzle-orm';
 import { render } from 'react-email';
 
 export const handleReplyContactForm = async (
-  data: ContactReplyInputSchema,
-): Promise<ActionResponse<ContactReplyOutputSchema>> => {
+  data: ContactReplyInput,
+): Promise<ActionResponse<ContactReplyOutput>> => {
   try {
     const result = ContactReplyFormSchema.safeParse(data);
 
@@ -25,7 +25,7 @@ export const handleReplyContactForm = async (
       return {
         success: false,
         message: e.message,
-        field: e.path.join('.') as keyof ContactReplyOutputSchema,
+        field: e.path.join('.') as keyof ContactReplyOutput,
       };
     }
 

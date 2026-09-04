@@ -69,7 +69,7 @@ export type SignUpFormOutputSchema = z.output<typeof SignUpFormSchema>;
  * Validate Contact Reply Form Schema
  */
 export const ContactReplyFormSchema = z.object({
-  originalContactId: z.string(),
+  originalContactId: z.uuid(),
   email: z.email('Must be a valid email address').min(1, 'Email is required'),
   message: z
     .string()
@@ -79,8 +79,22 @@ export const ContactReplyFormSchema = z.object({
 /**
  * Validate Contact Reply Input Form Schema
  */
-export type ContactReplyInputSchema = z.input<typeof ContactReplyFormSchema>;
+export type ContactReplyInput = z.input<typeof ContactReplyFormSchema>;
 /**
  * Validate Contact Reply Output Form Schema
  */
-export type ContactReplyOutputSchema = z.output<typeof ContactReplyFormSchema>;
+export type ContactReplyOutput = z.output<typeof ContactReplyFormSchema>;
+
+/**
+ * Validate Cntact Form Status Schema
+ */
+export const ContactFormStatusSchema = z.object({
+  status: z
+    .enum(['new', 'in_progress', 'replied', 'resolved', 'spam'])
+    .default('new'),
+  originalId: z.uuid(),
+});
+/**
+ * Validate Contact Form Status Input
+ */
+export type ContactFormStatusInput = z.infer<typeof ContactFormStatusSchema>;
