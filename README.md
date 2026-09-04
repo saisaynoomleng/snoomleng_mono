@@ -92,7 +92,7 @@ GitHub Actions automates the CI/CD workflow, including validation, building, and
 ### Installation
 
 ```bash
-git clone https://github.com/saisaynoomleng/snoomleng.git
+git clone https://github.com/saisaynoomleng/snoomleng_mono.git
 
 cd snoomleng
 
