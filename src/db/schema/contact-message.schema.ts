@@ -1,6 +1,7 @@
 import * as t from 'drizzle-orm/pg-core';
 import { ContactTable } from './contact.schema';
 import { timestamps } from './schema-helper';
+import { InferSelectModel } from 'drizzle-orm';
 
 export const ContactMessageTable = t.pgTable(
   'contact_messages',
@@ -23,3 +24,7 @@ export const ContactMessageTable = t.pgTable(
     t.index('contact_message_contact_id_idx').on(table.contactId, table.id),
   ],
 );
+
+export type SelectContactMessageTable = InferSelectModel<
+  typeof ContactMessageTable
+>;

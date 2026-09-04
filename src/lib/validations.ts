@@ -69,7 +69,7 @@ export type SignUpFormOutputSchema = z.output<typeof SignUpFormSchema>;
  * Validate Contact Reply Form Schema
  */
 export const ContactReplyFormSchema = z.object({
-  originalContactId: z.string(),
+  originalContactId: z.uuid(),
   email: z.email('Must be a valid email address').min(1, 'Email is required'),
   message: z
     .string()
@@ -79,8 +79,53 @@ export const ContactReplyFormSchema = z.object({
 /**
  * Validate Contact Reply Input Form Schema
  */
-export type ContactReplyInputSchema = z.input<typeof ContactReplyFormSchema>;
+export type ContactReplyInput = z.input<typeof ContactReplyFormSchema>;
 /**
  * Validate Contact Reply Output Form Schema
  */
-export type ContactReplyOutputSchema = z.output<typeof ContactReplyFormSchema>;
+export type ContactReplyOutput = z.output<typeof ContactReplyFormSchema>;
+
+/**
+ * Validate Cntact Form Status Schema
+ */
+export const ContactFormStatusSchema = z.object({
+  status: z
+    .enum(['new', 'in_progress', 'replied', 'resolved', 'spam'])
+    .default('new'),
+  originalId: z.uuid(),
+});
+/**
+ * Validate Contact Form Status Input
+ */
+export type ContactFormStatusInput = z.infer<typeof ContactFormStatusSchema>;
+
+/**
+ * Validate Admin Change Password Form Schema
+ */
+export const AdminChangePasswordFormSchema = z.object({
+  currentPassword: z
+    .string()
+    .min(8, 'Current Password must have at least 8 characters')
+    .max(128, 'Current Password cannot exceeds 128 characters'),
+  password: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  confirmPassword: z
+    .string()
+    .min(8, 'Password must have at least 8 characters')
+    .max(128, 'Password cannot exceeds 128 characters'),
+  revokeSessions: z.boolean().default(false),
+});
+/**
+ * Validate Admin Change Password Form Input
+ */
+export type AdminChangePasswordInput = z.input<
+  typeof AdminChangePasswordFormSchema
+>;
+/**
+ * Vailate Admin Change Passowrd Form Output
+ */
+export type AdminChangePasswordOutput = z.output<
+  typeof AdminChangePasswordFormSchema
+>;

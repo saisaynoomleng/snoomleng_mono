@@ -9,13 +9,13 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from '@/components/ui/input-group';
-import { ContactReplyInputSchema } from '@/lib/validations';
+import { ContactReplyInput } from '@/lib/validations';
 import React from 'react';
 import { Controller, SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 type ContactReplyFormProps = {
-  form: UseFormReturn<ContactReplyInputSchema>;
-  onSubmit: SubmitHandler<ContactReplyInputSchema>;
+  form: UseFormReturn<ContactReplyInput>;
+  onSubmit: SubmitHandler<ContactReplyInput>;
   pending: boolean;
 };
 
@@ -27,7 +27,7 @@ export const ContactReplyForm = ({
   return (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
-      className="flex flex-col gap-y-4"
+      className="flex flex-col gap-y-6"
     >
       <Controller
         name="message"
@@ -52,7 +52,7 @@ export const ContactReplyForm = ({
       />
 
       <Field orientation="horizontal">
-        <Button disabled={pending}>
+        <Button type="submit">
           {pending ? (
             <span>
               <LoadingSpinner />

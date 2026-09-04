@@ -52,7 +52,7 @@ export const handleContactForm = async (
 
       await emailClient.send(
         new SendEmailCommand({
-          Source: 'noreply@snoomleng.com',
+          Source: 'contact@snoomleng.com',
 
           Destination: {
             ToAddresses: [email],

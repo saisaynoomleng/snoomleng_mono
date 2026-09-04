@@ -31,6 +31,7 @@ export const getContactById = async ({ id }: { id: string }) => {
             message: true,
             createdAt: true,
             direction: true,
+            id: true,
           },
         },
       },
