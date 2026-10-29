@@ -4,6 +4,8 @@ import { josefin_slab, open_sans } from '@/lib/font';
 import clsx from 'clsx';
 import { SanityLive } from '@/sanity/lib/live';
 import { Toaster } from 'sonner';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { env } from '@/lib/env/client';
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +29,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="min-h-full flex flex-col">
         {children}
+
+        <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         <SanityLive />
 
         <Toaster richColors closeButton position="bottom-center" />

@@ -31,6 +31,11 @@ export const env = createEnv({
       .string()
       .min(1, 'Better Auth secret must have at least 1 character'),
     BETTER_AUTH_URL: z.url('Must be a valid URL'),
+
+    GA4_PROPERTY_ID: z.string().min(1, 'GA4 Property ID is required'),
+    GOOGLE_APPLICATION_CREDENTIALS: z
+      .string()
+      .min(1, { error: 'Google application credentials is required' }),
   },
   runtimeEnv: {
     SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
@@ -46,6 +51,9 @@ export const env = createEnv({
 
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+
+    GA4_PROPERTY_ID: process.env.GA4_PROPERTY_ID,
+    GOOGLE_APPLICATION_CREDENTIALS: process.env.GOOGLE_APPLICATION_CREDENTIALS,
   },
 
   skipValidation: !!process.env.SKIP_VALIDATION,
