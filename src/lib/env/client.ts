@@ -13,12 +13,16 @@ export const env = createEnv({
       .string()
       .min(1, 'Sanity Project ID must have at least 1 character'),
     NEXT_PUBLIC_LOGO_URL: z.url('Must be a valid URL'),
+    NEXT_PUBLIC_GA_MEASUREMENT_ID: z
+      .string()
+      .min(1, { error: 'GA measurement ID is required' }),
   },
   runtimeEnv: {
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     NEXT_PUBLIC_LOGO_URL: process.env.NEXT_PUBLIC_LOGO_URL,
+    NEXT_PUBLIC_GA_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID,
   },
 
   skipValidation: !!process.env.SKIP_VALIDATION,
