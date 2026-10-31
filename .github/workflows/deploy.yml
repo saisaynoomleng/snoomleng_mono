@@ -16,4 +16,11 @@ jobs:
       - name: Build Docker
         uses: ./.github/actions/build-docker
         with:
-          image-name: snoomleng
+          image-name: snoomleng/web
+
+      - name: Push ECR
+        uses: ./.github/actions/push-ecr
+        with:
+          ecr-repo-uri: ${{ vars.ECR_REPO_URI }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -9,7 +9,7 @@ inputs:
   image-name:
     description: Docker image name
     required: false
-    default: snoomleng
+    default: snoomleng/web
 
   image-tag:
     description: Docker image tag
@@ -19,7 +19,7 @@ inputs:
   container-name:
     description: Container Name
     required: false
-    default: snoomleng:latest
+    default: snoomleng/web:latest
 
   aws-access-key-id:
     description: AWS IAM access key id
@@ -46,7 +46,8 @@ runs:
     - name: Tag Image
       shell: bash
       run: |
-        docker tag snoomleng/web:latest \
+        docker tag \
+        ${{ inputs.image-name }}:${{ image:tag }} \
         ${{ inputs.ecr-repo-uri }}/${{ inputs.container-name }}
 
     - name: Push Image
