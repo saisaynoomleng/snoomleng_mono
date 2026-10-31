@@ -5,7 +5,7 @@ inputs:
   image-name:
     description: Docker image name
     required: false
-    default: snoomleng
+    default: snoomleng/web
 
 runs:
   using: composite
