@@ -29,6 +29,11 @@ inputs:
     description: AWS IAM secret access key
     required: true
 
+  aws-region:
+    description: AWS REGION
+    required: false
+    default: us-east-2
+
 runs:
   using: composite
   steps:
@@ -37,6 +42,7 @@ runs:
       with:
         aws-access-key-id: ${{ inputs.aws-access-key-id }}
         aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+        aws-region: ${{ inputs.aws-region }}
 
     - name: AWS login
       shell: bash
