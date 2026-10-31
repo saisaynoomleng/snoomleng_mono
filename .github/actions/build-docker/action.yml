@@ -1,0 +1,16 @@
+name: Build Docker
+description: Build docker image
+
+inputs:
+  image-name:
+    description: Docker image name
+    required: false
+    default: snoomleng
+
+runs:
+  using: composite
+  steps:
+    - name: Build Docker Image
+      shell: bash
+      run: |
+        docker build -t ${{ inputs.image-name }} .
