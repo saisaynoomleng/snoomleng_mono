@@ -12,7 +12,7 @@ COPY package.json pnpm*.yaml ./
 
 RUN corepack enable pnpm && corepack prepare pnpm@11.24.0 --activate
 
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store/.next/cache \
 pnpm i --frozen-lockfile
 
 #=======================================
