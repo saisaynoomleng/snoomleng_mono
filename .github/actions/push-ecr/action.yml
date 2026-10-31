@@ -1,0 +1,55 @@
+name: Push ECR
+description: Push built docker image to AWS ECR
+
+inputs:
+  ecr-repo-uri:
+    description: AWS ECR Repo URI
+    required: true
+
+  image-name:
+    description: Docker image name
+    required: false
+    default: snoomleng
+
+  image-tag:
+    description: Docker image tag
+    required: false
+    default: latest
+
+  container-name:
+    description: Container Name
+    required: false
+    default: snoomleng:latest
+
+  aws-access-key-id:
+    description: AWS IAM access key id
+    required: true
+
+  aws-secret-access-key:
+    description: AWS IAM secret access key
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Configrue AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v6
+      with:
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+
+    - name: AWS login
+      shell: bash
+      run: |
+        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ inputs.ecr-repo-uri }}
+
+    - name: Tag Image
+      shell: bash
+      run: |
+        docker tag snoomleng/web:latest \
+        ${{ inputs.ecr-repo-uri }}/${{ inputs.container-name }}
+
+    - name: Push Image
+      shell: bash
+      run: |
+        docker push ${{ inputs.ecr-repo-uri }}/${{ inputs.container-name }}
