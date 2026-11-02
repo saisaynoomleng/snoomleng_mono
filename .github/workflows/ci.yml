@@ -12,6 +12,6 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Lint & Build
-        uses: ./.github/actions/build
+        uses: ./.github/actions/build-next
         with:
           node-version: '24.21.0'
