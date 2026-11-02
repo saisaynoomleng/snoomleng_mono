@@ -54,8 +54,8 @@ jobs:
       - name: Push to ECR
         uses: ./.github/actions/push-ecr
         with:
-          aws-access-key-id: ${{ secrets.aws-access-key-id }}
-          aws-secret-access-key: ${{ secrets.aws-secret-access-key }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ inputs.aws-region }}
           ecr-repo-uri: ${{ inputs.ecr-repo-uri }}
           image-name: ${{ inputs.image-name }}
