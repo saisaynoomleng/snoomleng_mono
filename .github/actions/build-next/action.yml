@@ -40,5 +40,5 @@ runs:
     - name: Build pnpm
       shell: bash
       env:
-        SKIP_VALIDATION: true
+        SKIP_VALIDATION: 'true'
       run: pnpm build
