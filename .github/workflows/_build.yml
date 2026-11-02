@@ -1,0 +1,66 @@
+name: Build (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      ecr-repo-uri:
+        description: AWS ECR Repo URI
+        required: true
+        type: string
+
+      image-name:
+        description: Docker image name
+        required: false
+        default: snoomleng/web
+        type: string
+
+      image-tag:
+        description: Docker image tag
+        required: false
+        default: latest
+        type: string
+
+      container-name:
+        description: Container Name
+        required: false
+        default: snoomleng/web:latest
+        type: string
+
+      aws-access-key-id:
+        description: AWS IAM access key id
+        required: true
+        type: string
+
+      aws-secret-access-key:
+        description: AWS IAM secret access key
+        required: true
+        type: string
+
+      aws-region:
+        description: AWS REGION
+        required: false
+        default: us-east-2
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Build Docker
+        uses: ./.github/actions/build-docker
+        with:
+          image-name: ${{ inputs.image-name }}
+
+      - name: Push to ECR
+        uses: ./.github/actions/push-ecr
+        with:
+          aws-access-key-id: ${{ inputs.aws-access-key-id }}
+          aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+          aws-region: ${{ inputs.aws-region }}
+          ecr-repo-uri: ${{ inputs.ecr-repo-uri }}
+          image-name: ${{ inputs.image-name }}
+          image-tag: ${{ inputs.image-tag }}
+          container-name: ${{ inputs.container-name }}
