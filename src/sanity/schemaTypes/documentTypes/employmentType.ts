@@ -1,4 +1,4 @@
-import { formatDate, formatTitle } from '@/lib/formatter';
+import { formatDate, toTitleCase } from '@/lib/formatter';
 import { GiSuitcase } from 'react-icons/gi';
 import { defineField, defineType } from 'sanity';
 
@@ -44,7 +44,7 @@ export const emplopymentType = defineType({
       endedDate: 'endedAt',
     },
     prepare({ name, startedDate, endedDate }) {
-      const formatName = name ? formatTitle(name) : 'Name not provided';
+      const formatName = name ? toTitleCase(name) : 'Name not provided';
       const start = startedDate
         ? formatDate(startedDate)
         : 'Started date not specified';

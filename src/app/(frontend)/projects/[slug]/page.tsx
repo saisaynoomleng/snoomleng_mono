@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
-import { formatDate, formatTitle, replaceDashWithSpace } from '@/lib/formatter';
+import { formatDate, toTitleCase, replaceDashWithSpace } from '@/lib/formatter';
 import { sanityFetch } from '@/sanity/lib/live';
 import { ALL_PROJECTS_QUERY, PROJECT_QUERY } from '@/sanity/lib/query';
 import type { Metadata } from 'next';
@@ -108,7 +108,7 @@ const ProjectDetailPage = async ({ params }: SlugParamsProps) => {
                   <TableCell>Project Type</TableCell>
                   {type && (
                     <TableCell className="font-semibold">
-                      {replaceDashWithSpace(formatTitle(type))}
+                      {replaceDashWithSpace(toTitleCase(type))}
                     </TableCell>
                   )}
                 </TableRow>

@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { FaLinux } from 'react-icons/fa';
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 
 export const technologyType = defineType({
   name: 'technology',
@@ -51,8 +51,8 @@ export const technologyType = defineType({
     },
     prepare({ name, image, type }) {
       return {
-        title: name ? formatTitle(name) : 'Name not provided',
-        subtitle: type ? formatTitle(type) : 'Type not provided',
+        title: name ? toTitleCase(name) : 'Name not provided',
+        subtitle: type ? toTitleCase(type) : 'Type not provided',
         media: image ?? FaLinux,
       };
     },

@@ -3,7 +3,7 @@
  * @param title string
  * @returns string
  */
-export const formatTitle = (title: string): string => {
+export const toTitleCase = (title: string): string => {
   return title
     .trim()
     .replace(/\s+/g, ' ')

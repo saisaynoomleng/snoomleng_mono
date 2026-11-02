@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiStairsGoal } from 'react-icons/gi';
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 
 export const aboutType = defineType({
   name: 'about',
@@ -91,7 +91,7 @@ export const aboutType = defineType({
       name: 'name',
     },
     prepare({ name }) {
-      const formatName = name ? formatTitle(name) : 'Name not provided';
+      const formatName = name ? toTitleCase(name) : 'Name not provided';
       return {
         title: formatName,
         media: GiStairsGoal,

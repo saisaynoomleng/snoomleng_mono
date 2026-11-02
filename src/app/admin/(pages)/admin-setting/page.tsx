@@ -6,7 +6,7 @@ import { UpdateEmail } from '@/components/admin/AdminSetting/UpdateEmail';
 import { Bounded } from '@/components/shared/Bounded/Bounded';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { getUser, getUserIdFromSession } from '@/lib/dal';
-import { formatDate, formatTitle } from '@/lib/formatter';
+import { formatDate, toTitleCase } from '@/lib/formatter';
 import { notFound } from 'next/navigation';
 import { FaCheck } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
@@ -32,7 +32,7 @@ const AdminSettingPage = async () => {
             <TableBody>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell>{formatTitle(name)}</TableCell>
+                <TableCell>{toTitleCase(name)}</TableCell>
               </TableRow>
 
               <TableRow>
@@ -62,7 +62,7 @@ const AdminSettingPage = async () => {
 
               <TableRow>
                 <TableCell>Role</TableCell>
-                {role && <TableCell>{formatTitle(role)}</TableCell>}
+                {role && <TableCell>{toTitleCase(role)}</TableCell>}
               </TableRow>
             </TableBody>
           </Table>
