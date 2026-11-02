@@ -39,7 +39,7 @@ export const env = createEnv({
   },
   runtimeEnv: {
     SANITY_READ_TOKEN: process.env.SANITY_READ_TOKEN,
-    SANITY_WRITE_TOKEN: process.env.SANITY_READ_TOKEN,
+    SANITY_WRITE_TOKEN: process.env.SANITY_WRITE_TOKEN,
     SANITY_STUDIO_DATASET: process.env.SANITY_STUDIO_DATASET,
     SANITY_STUDIO_PROJECT_ID: process.env.SANITY_STUDIO_PROJECT_ID,
 
