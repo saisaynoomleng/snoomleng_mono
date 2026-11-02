@@ -5,7 +5,6 @@ import { handleReplyContactForm } from '@/actions/handleReplyContactForm';
 import { getAllContacts, getContactById } from '@/lib/dal';
 import { queryKeys } from '@/lib/queryKeys';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ContactFormStatusInput } from '@/lib/validations';
 import { ContactTableStatusInput } from '@/db';
 
 export const useGetAllContacts = () => {

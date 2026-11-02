@@ -17,13 +17,21 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <Button>Click Me!</Button>,
+  render: (args) => <Button {...args}>Click Me!</Button>,
 };
 
 export const Outline: Story = {
-  render: (args) => <Button variant="outline">Click Me!</Button>,
+  render: (args) => (
+    <Button variant="outline" {...args}>
+      Click Me!
+    </Button>
+  ),
 };
 
 export const Pagination: Story = {
-  render: (args) => <Button variant="pagination">1</Button>,
+  render: (args) => (
+    <Button variant="pagination" {...args}>
+      1
+    </Button>
+  ),
 };
