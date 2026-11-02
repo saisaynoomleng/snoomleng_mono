@@ -2,6 +2,13 @@ name: Build (reusable)
 
 on:
   workflow_call:
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+
     inputs:
       ecr-repo-uri:
         description: AWS ECR Repo URI
@@ -26,16 +33,6 @@ on:
         default: snoomleng/web:latest
         type: string
 
-      aws-access-key-id:
-        description: AWS IAM access key id
-        required: true
-        type: string
-
-      aws-secret-access-key:
-        description: AWS IAM secret access key
-        required: true
-        type: string
-
       aws-region:
         description: AWS REGION
         required: false
@@ -57,8 +54,8 @@ jobs:
       - name: Push to ECR
         uses: ./.github/actions/push-ecr
         with:
-          aws-access-key-id: ${{ inputs.aws-access-key-id }}
-          aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+          aws-access-key-id: ${{ secrets.aws-access-key-id }}
+          aws-secret-access-key: ${{ secrets.aws-secret-access-key }}
           aws-region: ${{ inputs.aws-region }}
           ecr-repo-uri: ${{ inputs.ecr-repo-uri }}
           image-name: ${{ inputs.image-name }}
