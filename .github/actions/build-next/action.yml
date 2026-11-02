@@ -2,19 +2,19 @@ name: Build Next.js
 description: Install dependencies, lint, and build Next.js
 
 inputs:
-  node_version:
+  node-version:
     description: Current node.js version to run the build(e.g. 24.21.0)
     required: false
-    default: "24.21.0"
-  
-runs-on:
+    default: '24.21.0'
+
+runs:
   using: composite
   steps:
     - name: Setup Node
       uses: actions/setup-node@v6
       with:
-        node-version: ${{ inputs.node_version }}
-    
+        node-version: ${{ inputs.node-version }}
+
     - name: Setup pnpm
       shell: bash
       run: corepack enable pnpm && corepack prepare pnpm --activate
@@ -28,7 +28,7 @@ runs-on:
         key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
         restore-keys: |
           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-    
+
     - name: Install pnpm
       shell: bash
       run: pnpm install --frozen-lockfile
