@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { GrCertificate } from 'react-icons/gr';
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 
 export const certificateBadgeType = defineType({
   name: 'certificateBadge',
@@ -31,7 +31,7 @@ export const certificateBadgeType = defineType({
       image: 'mainImage',
     },
     prepare({ name, image }) {
-      const formatName = name ? formatTitle(name) : 'Badge name not provided';
+      const formatName = name ? toTitleCase(name) : 'Badge name not provided';
 
       return {
         title: formatName,

@@ -48,7 +48,6 @@ My personal developer portfolio and technical blog, built to showcase my project
 - AWS ECR
 - AWS SES
 - AWS Secrets Manager
-- AWS Security Groups
 - Certbot
 
 ## Features

@@ -1,4 +1,4 @@
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 import { CiLink } from 'react-icons/ci';
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
@@ -121,7 +121,7 @@ export const socialLink = defineType({
     },
     prepare({ name }) {
       return {
-        title: name ? formatTitle(name) : 'Platform not provided',
+        title: name ? toTitleCase(name) : 'Platform not provided',
         media: CiLink,
       };
     },

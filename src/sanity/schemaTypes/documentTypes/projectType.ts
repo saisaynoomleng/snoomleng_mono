@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { GiFiles } from 'react-icons/gi';
-import { formatDate, formatTitle } from '@/lib/formatter';
+import { formatDate, toTitleCase } from '@/lib/formatter';
 
 export const projectType = defineType({
   name: 'project',
@@ -94,14 +94,14 @@ export const projectType = defineType({
       image: 'mainImage',
     },
     prepare({ name, startedDate, endedDate, type, image }) {
-      const formatName = name ? formatTitle(name) : 'Name not provided';
+      const formatName = name ? toTitleCase(name) : 'Name not provided';
       const formatStart = startedDate
         ? formatDate(startedDate)
         : 'Started Date not specified';
       const formatEnd = endedDate
         ? formatDate(endedDate)
         : 'Still in development';
-      const formatType = type ? formatTitle(type) : 'Type not specified';
+      const formatType = type ? toTitleCase(type) : 'Type not specified';
 
       return {
         title: `${formatName} (${formatType})`,

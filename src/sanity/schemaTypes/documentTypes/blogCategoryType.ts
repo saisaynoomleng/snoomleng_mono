@@ -1,4 +1,4 @@
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 import { MdCategory } from 'react-icons/md';
 import { defineField, defineType } from 'sanity';
 
@@ -35,7 +35,7 @@ export const blogCategoryType = defineType({
     },
     prepare({ name, image }) {
       return {
-        title: name ? formatTitle(name) : 'Name not provided',
+        title: name ? toTitleCase(name) : 'Name not provided',
         media: image,
       };
     },

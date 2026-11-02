@@ -1,4 +1,4 @@
-import { formatTitle } from '@/lib/formatter';
+import { toTitleCase } from '@/lib/formatter';
 import { GiNewspaper } from 'react-icons/gi';
 import { defineType, defineField } from 'sanity';
 
@@ -63,11 +63,11 @@ export const blogType = defineType({
       image: 'mainImage',
     },
     prepare({ name, category, focus, image }) {
-      const formatName = name ? formatTitle(name) : 'Title not provided';
+      const formatName = name ? toTitleCase(name) : 'Title not provided';
       const formatCat = category
-        ? formatTitle(category)
+        ? toTitleCase(category)
         : 'Cateogry not provided';
-      const formatF = focus ? formatTitle(focus) : 'Focus not provided';
+      const formatF = focus ? toTitleCase(focus) : 'Focus not provided';
 
       return {
         title: formatName,
