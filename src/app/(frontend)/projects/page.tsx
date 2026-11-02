@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { ALL_PROJECTS_QUERY } from '@/sanity/lib/query';
 import { sanityFetch } from '@/sanity/lib/live';
 import { Bounded } from '@/components/shared/Bounded/Bounded';
-import { SectionTitle } from '@/components/shared/SectionTitle/SectionTitle';
 import { ProjectCard } from '@/components/shared/ProjectCard/ProjectCard';
 
 export const metadata: Metadata = {

@@ -10,8 +10,6 @@ import { Metadata } from 'next';
 import { PortableText } from 'next-sanity';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Link } from 'react-email';
-import { PortableTextInput } from 'sanity';
 
 type ParamsProps = {
   params: Promise<{ slug: string }>;
@@ -59,17 +57,7 @@ const BlogDetailPage = async ({ params }: ParamsProps) => {
 
   if (!blog) return notFound();
 
-  const {
-    name,
-    publishedAt,
-    body,
-    imageUrl,
-    imageAlt,
-    focus,
-    category,
-    categorySlug,
-    relatedBlogs,
-  } = blog;
+  const { name, publishedAt, body, imageUrl, imageAlt, focus, category } = blog;
 
   return (
     <Bounded spacing="sm">

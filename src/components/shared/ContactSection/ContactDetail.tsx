@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { FaLinkedin } from 'react-icons/fa';
-import { SiGithub, SiLeetcode } from 'react-icons/si';
+import { SiGithub } from 'react-icons/si';
 import {
   Tooltip,
   TooltipTrigger,

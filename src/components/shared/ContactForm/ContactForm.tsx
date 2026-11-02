@@ -69,8 +69,8 @@ export const ContactForm = ({
           Put it in Writing
         </h3>
         <p className="text-fs-300 font-semibold text-muted-foreground">
-          Have a project, opportunity, or idea in mind? I'd love to hear about
-          it.
+          Have a project, opportunity, or idea in mind? I&apos;d love to hear
+          about it.
         </p>
       </div>
 
