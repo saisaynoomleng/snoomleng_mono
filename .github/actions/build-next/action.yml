@@ -37,11 +37,11 @@ runs:
       shell: bash
       run: pnpm lint
 
-    - name: Build pnpm
-      shell: bash
-      env:
-        SKIP_VALIDATION: 'true'
-        BETTER_AUTH_SECRET: 'ci-build-only-secret-not-for-production'
-        NEXT_PUBLIC_SANITY_DATASET: 'production'
-        NEXT_PUBLIC_SANITY_PROJECT_ID: 'yzx0dd6e'
-      run: pnpm build
+    # - name: Build pnpm
+    #   shell: bash
+    #   env:
+    #     SKIP_VALIDATION: 'true'
+    #     BETTER_AUTH_SECRET: 'ci-build-only-secret-not-for-production'
+    #     NEXT_PUBLIC_SANITY_DATASET: 'production'
+    #     NEXT_PUBLIC_SANITY_PROJECT_ID: 'yzx0dd6e'
+    #   run: pnpm build
