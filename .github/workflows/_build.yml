@@ -2,13 +2,6 @@ name: Build (reusable)
 
 on:
   workflow_call:
-    secrets:
-      AWS_ACCESS_KEY_ID:
-        required: true
-
-      AWS_SECRET_ACCESS_KEY:
-        required: true
-
     inputs:
       ecr-repo-uri:
         description: AWS ECR Repo URI
@@ -39,9 +32,17 @@ on:
         default: us-east-2
         type: string
 
+      role-to-assume:
+        description: GitHub OIDC AWS role
+        required: true
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -54,8 +55,7 @@ jobs:
       - name: Push to ECR
         uses: ./.github/actions/push-ecr
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ inputs.role-to-assume }}
           aws-region: ${{ inputs.aws-region }}
           ecr-repo-uri: ${{ inputs.ecr-repo-uri }}
           image-name: ${{ inputs.image-name }}
