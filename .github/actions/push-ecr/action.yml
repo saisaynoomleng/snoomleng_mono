@@ -36,13 +36,13 @@ runs:
     - name: Configrue AWS Credentials
       uses: aws-actions/configure-aws-credentials@v6
       with:
-        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-region: ${{ inputs.aws-region }}
         role-to-assume: ${{ inputs.role-to-assume }}
 
-    - name: AWS login
+    - name: Login to Amazon ECR
       shell: bash
       run: |
-        aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin ${{ inputs.ecr-repo-uri }}
+        aws ecr get-login-password --region ${{ inputs.aws-region }} | docker login --username AWS --password-stdin ${{ inputs.ecr-repo-uri }}
 
     - name: Tag Image
       shell: bash

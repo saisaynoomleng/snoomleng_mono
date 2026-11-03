@@ -15,5 +15,5 @@ jobs:
     uses: ./.github/workflows/_build.yml
     with:
       aws-region: us-east-2
-      role-to-assume: ${{ vars.ROLE_TO_ASSUME }}
+      role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
       ecr-repo-uri: ${{ vars.ECR_REPO_URI }}
