@@ -21,12 +21,8 @@ inputs:
     required: false
     default: snoomleng/web:latest
 
-  aws-access-key-id:
-    description: AWS IAM access key id
-    required: true
-
-  aws-secret-access-key:
-    description: AWS IAM secret access key
+  role-to-assume:
+    description: GitHub AWS OIDC
     required: true
 
   aws-region:
@@ -41,8 +37,7 @@ runs:
       uses: aws-actions/configure-aws-credentials@v6
       with:
         aws-access-key-id: ${{ inputs.aws-access-key-id }}
-        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
-        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.role-to-assume }}
 
     - name: AWS login
       shell: bash
